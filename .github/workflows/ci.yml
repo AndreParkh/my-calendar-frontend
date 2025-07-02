@@ -100,7 +100,7 @@ jobs:
 
       # Шаг 8: Публикация Docker-образа
       - name: Push Docker image
-        run: docker psuh ${{ secrets.DOCKER_HUB_USERNAME }}/my-calendar-frontend:latest
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-calendar-frontend:latest
 
   # Job
   trigger-deploy:
