@@ -112,7 +112,7 @@ jobs:
         id: trigger-deploy
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.DOCKER_HUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           repository: andreparkh/my-calendar-docker-compose
           event-type: deploy
           client-payload: '{"message": "Deploy triggered from my-calendar-frontend"}'
