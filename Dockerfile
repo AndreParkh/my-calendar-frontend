@@ -1,6 +1,6 @@
 # Stage 1: Build
 # Используем базовый образ Node.js версии 22.17.0
-FROM node:22.17.0 as build
+FROM node:22-slim as build
 LABEL authors="Andrey"
 
 # Устанавливаем рабочую директорию внутри контейнера
