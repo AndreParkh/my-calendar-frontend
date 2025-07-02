@@ -58,7 +58,7 @@ jobs:
         run: docker build -t my-calendar-frontend:${{ github.sha }} .
 
   # Job
-  publich-docker-image:
+  publish-docker-image:
     needs: build-docker-image
     runs-on: ubuntu-latest
 
