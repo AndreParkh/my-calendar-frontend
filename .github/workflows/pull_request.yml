@@ -1,0 +1,29 @@
+name: pull_request.yml
+on:
+  pull_request:
+    types: [ opened, reopened, edited, synchronize ]
+
+jobs:
+  # Job 1: Сборка проекта
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Checkout кода
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Шаг 2: Установка Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+          cache: npm
+
+      # Шаг 3: Установка зависимостей
+      - name: Install dependencies
+        run: npm install
+
+      # Шаг 4: Сборка проекта
+      - name: build project
+        run: npm run build
