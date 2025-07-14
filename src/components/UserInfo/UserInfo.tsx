@@ -1,8 +1,7 @@
-import './App.css'
+import './UserInfo.css'
 import {fetchUser} from "../../api/public/fetchUser.ts";
 
-async function App() {
-
+async function UserInfo() {
   const user = await fetchUser()
 
   return (
@@ -23,4 +22,4 @@ async function App() {
   )
 }
 
-export default App
+export default UserInfo

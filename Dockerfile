@@ -1,6 +1,6 @@
 # Stage 1: Build
 # Используем базовый образ Node.js версии 22.17.0
-FROM node:22-slim as build
+FROM node:22-slim
 LABEL authors="Andrey"
 
 # Устанавливаем рабочую директорию внутри контейнера
@@ -17,3 +17,6 @@ COPY . .
 
 # Выполняем сборку проекта
 RUN npm run build
+
+EXPOSE 5003
+CMD ["node", "src/server-dev.js"]
