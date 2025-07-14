@@ -19,4 +19,4 @@ COPY . .
 RUN npm run build
 
 EXPOSE 5003
-CMD ["node", "server"]
+CMD ["npm", "run", "start"]

@@ -3,7 +3,7 @@ import express from 'express'
 import { Transform } from 'node:stream'
 
 const isProduction = process.env.NODE_ENV === 'production'
-const port = process.env.PORT || 5173
+const port = process.env.PORT || 5003
 const base = process.env.BASE || '/'
 const ABORT_DELAY = 10000
 
@@ -39,7 +39,7 @@ app.use('*all', async (req, res) => {
         if (!isProduction) {
             template = await fs.readFile('./index.html', 'utf-8')
             template = await vite.transformIndexHtml(url, template)
-            render = (await vite.ssrLoadModule('/src/entry-server.jsx')).render
+            render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render
         } else {
             template = templateHtml
             render = (await import('./dist/server/entry-server.js')).render
@@ -90,6 +90,6 @@ app.use('*all', async (req, res) => {
     }
 })
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server started at http://localhost:${port}`)
 })
