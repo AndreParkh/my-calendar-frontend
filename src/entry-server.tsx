@@ -5,5 +5,5 @@ import {
 import App from "./components/App/App.tsx";
 
 export const render = (_url: string, options?: RenderToPipeableStreamOptions) => {
-    return renderToPipeableStream(<App />, options);
-};
+    return renderToPipeableStream(<div id="root"><App/></div>, options);
+        };

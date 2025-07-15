@@ -26,7 +26,7 @@ const setupProdMiddlewares = async (app) => {
 }
 
 const sendStreamedResponse = (res, template, renderFn, url) => {
-    const [htmlStart, htmlEnd] = template.split('<!--app-html-->')
+    const [htmlStart, htmlEnd] = template.split('<div id="root"></div>')
 
     const { pipe, abort } = renderFn(url, {
         onShellError() {
