@@ -2,50 +2,27 @@ import fs from 'node:fs/promises'
 import express from 'express'
 import { Transform } from 'node:stream'
 
-const isProduction = process.env.NODE_ENV === 'production'
 const port = process.env.PORT || 5003
 const base = process.env.BASE || '/'
 const ABORT_DELAY = 10_000
 
-const getTemplateHtml = async () =>
-    isProduction ? await fs.readFile('./dist/client/index.html', 'utf-8') : ''
-
-const setupMiddlewares = async (app) => {
-    if (!isProduction) {
-        const { createServer } = await import('vite')
-        const viteDevServer = await createServer({
-            server: { middlewareMode: true },
-            appType: 'custom',
-            base,
-        })
-        app.use(viteDevServer.middlewares)
-        return viteDevServer
-    } else {
-        const compression = (await import('compression')).default
-        const sirv = (await import('sirv')).default
-        app.use(compression())
-        app.use(base, sirv('./dist/client', { extensions: [] }))
-        return null
-    }
+const setupDevMiddlewares = async (app) => {
+    const {createServer} = await import('vite')
+    const viteDevServer = await createServer({
+        server: {middlewareMode: true},
+        appType: 'custom',
+        base,
+    })
+    app.use(viteDevServer.middlewares)
+    return viteDevServer
 }
 
-const getTemplate = async (url, viteDevServer) => {
-    if (!isProduction) {
-        const rawTemplate = await fs.readFile('./index.html', 'utf-8')
-        return viteDevServer.transformIndexHtml(url, rawTemplate)
-    } else {
-        return getTemplateHtml()
-    }
-}
-
-const getRenderer = async (viteDevServer) => {
-    if (!isProduction) {
-        const { render } = await viteDevServer.ssrLoadModule('/src/entry-server.tsx')
-        return render
-    } else {
-        const { render } = await import('./dist/server/entry-server.js')
-        return render
-    }
+const setupProdMiddlewares = async (app) => {
+    const compression = (await import('compression')).default
+    const sirv = (await import('sirv')).default
+    app.use(compression())
+    app.use(base, sirv('./dist/client', {extensions: []}))
+    return null
 }
 
 const sendStreamedResponse = (res, template, renderFn, url) => {
@@ -86,18 +63,29 @@ const sendStreamedResponse = (res, template, renderFn, url) => {
     }, ABORT_DELAY)
 }
 
-// Обработчик запросов
-const handleRequest = async (req, res, vite) => {
-    try {
-        const url = req.originalUrl.replace(base, '')
-        const template = await getTemplate(url, vite)
-        const renderFn = await getRenderer(vite)
+const handleRequestDev = async (req, res, viteDevServer) => {
+    const url = req.originalUrl.replace(base, '')
 
-        sendStreamedResponse(res, template, renderFn, url)
+    try {
+        const rawTemplate = await fs.readFile('./index.html', 'utf-8')
+        const template= await viteDevServer.transformIndexHtml(url, rawTemplate)
+        const { render }  = await viteDevServer.ssrLoadModule('/src/entry-server.tsx')
+
+        sendStreamedResponse(res, template, render, url)
     } catch (e) {
-        if (vite && typeof vite.ssrFixStacktrace === 'function') {
-            vite.ssrFixStacktrace(e)
-        }
+        viteDevServer.ssrFixStacktrace(e)
+        console.error(e.stack)
+        res.status(500).end(e.stack)
+    }
+}
+const handleRequestProd = async (req, res) => {
+    const url = req.originalUrl.replace(base, '')
+    try {
+        const template = await fs.readFile('./dist/client/index.html', 'utf-8')
+        const { render } = await import('./dist/server/entry-server.js')
+
+        sendStreamedResponse(res, template, render, url)
+    } catch (e) {
         console.error(e.stack)
         res.status(500).end(e.stack)
     }
@@ -105,9 +93,15 @@ const handleRequest = async (req, res, vite) => {
 
 const startServer = async () => {
     const app = express()
-    const vite = await setupMiddlewares(app)
+    const isProduction = process.env.NODE_ENV === 'production'
 
-    app.use('*all', (req, res) => handleRequest(req, res, vite))
+    if (isProduction) {
+        await setupProdMiddlewares(app)
+        app.use('*all', (req, res) => handleRequestProd(req, res))
+    } else {
+        const viteDevServer = await setupDevMiddlewares(app)
+        app.use('*all', (req, res) => handleRequestDev(req, res, viteDevServer))
+    }
 
     app.listen(port, '0.0.0.0', () => {
         console.log(`Server started at http://localhost:${port}`)

@@ -1,9 +1,17 @@
-import {Suspense} from "react";
-import UserInfo from '../UserInfo/UserInfo.tsx'
+import {StrictMode, useState} from "react";
+import UserInfoPage from "../UserInfo/UserInfoPage.tsx";
+
 export default function App() {
+    const [show, setShow] = useState(false);
+
     return (
-        <Suspense fallback={<p>Loading card component...</p>}>
-            <UserInfo />
-        </Suspense>
-    )
+        <StrictMode>
+            {show
+                ? <UserInfoPage />
+                : (<button onClick={() => setShow(true)}>
+                    Показать данные пользователя
+                </button>)
+            }
+        </StrictMode>
+    );
 }

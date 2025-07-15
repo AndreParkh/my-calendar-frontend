@@ -1,12 +1,14 @@
 import './UserInfo.css'
-import {fetchUser} from "../../api/public/fetchUser.ts";
+import { use } from "react";
+import {UserResponseInterface} from "../../interfaces/UserResponse.interface.ts";
 
-async function UserInfo() {
-  const user = await fetchUser()
+function UserInfo({userPromise}: {userPromise: Promise<UserResponseInterface>}) {
 
-  return (
+    const user = use(userPromise)
+
+    return (
     <div className='user'>
-        <h1>Данные пользователя</h1>
+        <h1>Загрузилось</h1>
         <div>
             <p>ID: {user.id}</p>
             <p>Email: {user.email}</p>
