@@ -81,7 +81,6 @@ const handleRequestDev = async (req, res, viteDevServer) => {
     }
 }
 const handleRequestProd = async (req, res) => {
-    const url = req.originalUrl.replace(base, '')
     try {
         const template = await fs.readFile('./dist/client/index.html', 'utf-8')
         const { render, getContext } = await import('./dist/server/entry.server.js')
