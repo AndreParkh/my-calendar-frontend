@@ -140,5 +140,5 @@ jobs:
               fi
             fi
             echo "Waiting for Docker job to complete..."
-            speep 10
+            sleep 10
           done
