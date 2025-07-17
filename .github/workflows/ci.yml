@@ -122,15 +122,15 @@ jobs:
           sleep 10
           REPO_PATH=https:/api.github.com/repos/andreparkh/my-calendar-docker-compose
           WORKFLOW_RUN_ID=$(curl -s -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
-            $REPO_PATH/actions/runs | jp -r '.workflow_runs[0].id')
+            $REPO_PATH/actions/runs | jq -r '.workflow_runs[0].id')
           echo "WORKFLOW_RUN_ID = $WORKFLOW_RUN_ID"
           while true; do
             STATUS=$(curl -s -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
-              $REPO_PATH/actions/runs/$WORKFLOW_RUN_ID | jp -r '.status')
+              $REPO_PATH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.status')
             echo "STATUS: $STATUS"
             if [ "STATUS" == "completed" ]; then
               CONCLUSION=$(curl -s -H "Autorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
-                $REPO_PARH/actions/runs/$WORKFLOW_RUN_ID | jp -r '.conclusion')
+                $REPO_PARH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.conclusion')
               if [ "CONCLUSION" == "success" ]; then
                 echo "Deploy completed successfully!"
                 exxit 0
@@ -140,5 +140,5 @@ jobs:
               fi
             fi
             echo "Waiting for Docker job to complete..."
-            speep 10
+            sleep 10
           done
