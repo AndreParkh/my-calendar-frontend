@@ -1,7 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  height: 100%;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -11,14 +18,25 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: hsla(204, 53%, 49%, 1);
+  --secondary-color: hsla(210, 14%, 97%, 1);
+  --placeholder-color: hsla(0, 0%, 85%, 1);
+  --divider-color: hsla(0, 0%, 73%, 1);
+  --gray: hsla(0, 0%, 85%, 1);
+
+}
+
+html #root {
+  padding: 0;
+  margin: 0 auto  ;
+  height: 100vh;
+  max-width: 1440px;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100%;
 }
 
 @media (prefers-color-scheme: light) {

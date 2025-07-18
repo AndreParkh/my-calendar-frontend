@@ -1,4 +1,4 @@
-import './components/App/App.css'
+import './index.css'
 import ReactDom from "react-dom/client";
 import {StrictMode} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
