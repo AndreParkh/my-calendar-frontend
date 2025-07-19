@@ -1,10 +1,10 @@
 import {RouteObject} from "react-router-dom";
 import AuthLayout from "./components/AuhtLayout/AuthLayout.tsx";
-import Register from "./components/Register/Register.tsx";
 import Login from "./components/Login/Login.tsx";
 import App from "./components/App/App.tsx";
 import Catchall from "./components/Catchall.tsx";
 import Error from "./components/App/Error.tsx";
+import Register from "./components/Register/Register.tsx";
 
 const routes: RouteObject[] = [
     {
