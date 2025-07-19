@@ -1,73 +1,68 @@
 .layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .header {
-    display: flex;
-    padding: 15px;
-    gap: 10px;
-
-    align-items: center;
-
-    color: white;
-    background-color: var(--primary-color);
+  display: flex;
+  padding: 15px;
+  gap: 10px;
+  align-items: center;
+  color: white;
+  background-color: var(--primary-color);
 }
 
 .icon {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: var(--placeholder-color);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: var(--placeholder-color);
 }
 
 .name {
-    margin: 0;
+  margin: 0;
 }
 
 .content {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .slider {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .fakeImage {
-    height: 380px;
-    width: 750px;
-    background-color: var(--placeholder-color);
-    border-radius: 10px;
+  height: 380px;
+  width: 750px;
+  background-color: var(--placeholder-color);
+  border-radius: 10px;
 }
 
 .dots {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .dot {
-    background-color: var(--gray);
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
+  background-color: var(--gray);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
 }
 
 .dot__active {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .divider {
-    height: 580px;
-    width: 2px;
-    background-color: var(--divider-color);
-}
-
-.footer {
+  height: 580px;
+  width: 2px;
+  background-color: var(--divider-color);
 }

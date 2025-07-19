@@ -1,8 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import '../node_modules/reset-css/reset.css';
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -26,7 +22,6 @@
   --gray: hsla(0, 0%, 85%, 1);
 
   --hover-primary-color: hsla(204, 53%, 49%, 0.8);
-
 }
 
 html #root {

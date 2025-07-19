@@ -1,13 +1,13 @@
 .btn {
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    background-color: var(--primary-color);
-    color: white;
-    cursor: pointer;
-    transition: all ease 0.2s;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  transition: all ease 0.2s;
 }
 
 .btn:hover {
-    background-color: var(--hover-primary-color);
+  background-color: var(--hover-primary-color);
 }

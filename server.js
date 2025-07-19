@@ -72,7 +72,6 @@ const handleRequestDev = async (req, res, viteDevServer) => {
         const rawTemplate = await fs.readFile('./index.html', 'utf-8')
         const template= await viteDevServer.transformIndexHtml(url, rawTemplate)
         const { render, getContext }  = await viteDevServer.ssrLoadModule('/src/entry.server.tsx')
-        // const { getContext }  = await viteDevServer.ssrLoadModule('/src/utils/router.ts')
         await sendStreamedResponse(req, res, template, render, getContext)
     } catch (e) {
         viteDevServer.ssrFixStacktrace(e)
