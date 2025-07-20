@@ -1,4 +1,4 @@
-import type { UserResponseInterface } from '../../interfaces/UserResponse.interface.ts'
+import type { UserResponseInterface } from '@/interfaces/UserResponse.interface.ts'
 
 export async function fetchUser(): Promise<UserResponseInterface> {
   const response = await fetch('http://localhost/api/public/user')

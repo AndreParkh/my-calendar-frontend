@@ -1,4 +1,4 @@
-import { ILogin } from '../../components/Login/Login.interface.ts'
+import { ILogin } from '@/components/Login/Login.interface.ts'
 
 const login = async (data: ILogin) =>
   await fetch('http://localhost/api/auth/login', {

@@ -1,6 +1,6 @@
-.btn {
-  padding: 12px;
-  border-radius: 10px;
+.button {
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
   border: none;
   background-color: var(--primary-color);
   color: white;
@@ -8,6 +8,6 @@
   transition: all ease 0.2s;
 }
 
-.btn:hover {
+.button:hover {
   background-color: var(--hover-primary-color);
 }

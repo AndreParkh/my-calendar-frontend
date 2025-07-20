@@ -1,19 +1,16 @@
 'use client'
 import styles from './Login.module.css'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Input from '../Input/Input.tsx'
-import Button from '../Button/Button.tsx'
-import { useNavigate } from 'react-router'
-import { ILogin } from './Login.interface.ts'
-import login from '../../api/auth/login.ts'
 import { useState } from 'react'
+import { ILogin } from './Login.interface.ts'
+import login from '@/api/auth/login.ts'
+import { Button, ErrorSpan, Input } from '@/components'
+import { useTranslation } from 'react-i18next'
 
-const emailPattern = RegExp(
-    '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
-)
+const emailPattern = RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
 
-export default function Login() {
+const Login = () => {
   const {
     register,
     handleSubmit,
@@ -22,6 +19,7 @@ export default function Login() {
   } = useForm<ILogin>()
   const navigate = useNavigate()
   const [error, setError] = useState('')
+  const { t } = useTranslation('login')
 
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     setError('')
@@ -56,11 +54,11 @@ export default function Login() {
         onSubmit={handleSubmit(async (data) => await onSubmit(data))}
       >
         <label className={styles.label}>
-          Адрес электронной почты
+          {t('email.label')}
           <Input
             className={styles.input}
             type="text"
-            placeholder="Введите адрес электронной почты"
+            placeholder={t('email.placeholder')}
             error={errors.email}
             {...register('email', {
               required: { value: true, message: '*обязательное поле' },
@@ -69,11 +67,11 @@ export default function Login() {
           />
         </label>
         <label className={styles.label}>
-          Пароль
+          {t('password.label')}
           <Input
             className={styles.input}
             type="password"
-            placeholder="Введите пароль"
+            placeholder={t('password.placeholder')}
             error={errors.password}
             {...register('password', {
               required: { value: true, message: '*обязательное поле' },
@@ -81,12 +79,14 @@ export default function Login() {
             })}
           />
         </label>
-        <Button onSubmit={() => clearErrors()}>Войти</Button>
-        {error && <p className={styles.error}>{error}</p>}
+        <Button onClick={() => clearErrors()}>{t('button')}</Button>
+        <ErrorSpan message={error} />
       </form>
-      <NavLink to="/register" className={styles.ref}>
-        Зарегистрироваться
+      <NavLink to="../register" className={styles.ref}>
+        {t('register')}
       </NavLink>
     </div>
   )
 }
+
+export { Login }

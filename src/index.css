@@ -4,6 +4,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 16px;
   height: 100%;
 
   color-scheme: light dark;
@@ -20,11 +21,12 @@
   --placeholder-color: hsla(0, 0%, 85%, 1);
   --divider-color: hsla(0, 0%, 73%, 1);
   --gray: hsla(0, 0%, 85%, 1);
+  --border-radius: 10px;
 
   --hover-primary-color: hsla(204, 53%, 49%, 0.8);
 }
 
-html #root {
+#root {
   padding: 0;
   margin: 0 auto;
   height: 100vh;

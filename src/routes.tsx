@@ -1,25 +1,33 @@
 import { RouteObject } from 'react-router-dom'
-import AuthLayout from './components/AuhtLayout/AuthLayout.tsx'
-import Login from './components/Login/Login.tsx'
-import App from './components/App/App.tsx'
-import Catchall from './components/Catchall.tsx'
-import Error from './components/App/Error.tsx'
-import Register from './components/Register/Register.tsx'
+import {
+  App,
+  AuthLayout,
+  CatchAll,
+  Error,
+  Login,
+  Register,
+  User,
+} from '@/components'
 
 const routes: RouteObject[] = [
   {
     path: '/',
-    Component: AuthLayout,
+    Component: App,
     children: [
-      { index: true, element: <h1>Home</h1> },
-      { path: 'register', Component: Register },
-      { path: 'login', Component: Login },
-      { path: 'app', Component: App, errorElement: <Error /> },
+      {
+        path: 'auth',
+        Component: AuthLayout,
+        children: [
+          { path: 'login', Component: Login },
+          { path: 'register', Component: Register },
+        ],
+      },
+      { path: 'app', Component: User, errorElement: <Error /> },
     ],
   },
   {
     path: '*?',
-    Component: Catchall,
+    Component: CatchAll,
   },
 ]
 

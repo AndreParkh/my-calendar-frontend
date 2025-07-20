@@ -1,7 +1,7 @@
 import './UserInfo.css'
 import { Suspense } from 'react'
-import UserInfo from './UserInfo.tsx'
-import { fetchUser } from '../../api/public/fetchUser.ts'
+import { fetchUser } from '@/api/public/fetchUser.ts'
+import { UserInfo } from '@/components'
 
 function UserInfoPage() {
   const userPromise = fetchUser()

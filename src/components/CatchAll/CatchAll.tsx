@@ -1,3 +1,5 @@
-export default function CatchAll() {
+const CatchAll = () => {
   return <div>Страница не найдена</div>
 }
+
+export { CatchAll }

@@ -2,6 +2,7 @@ import styles from './Input.module.css'
 import cn from 'classnames'
 import { InputProps } from './Input.props.ts'
 import { ForwardedRef, forwardRef } from 'react'
+import { ErrorSpan } from '@/components'
 
 const Input = forwardRef(
   (
@@ -17,10 +18,10 @@ const Input = forwardRef(
           ref={ref}
           {...props}
         />
-        {error && <div className={styles.errorMessage}>{error.message}</div>}
+        <ErrorSpan message={error?.message} />
       </div>
     )
   },
 )
 
-export default Input
+export { Input }

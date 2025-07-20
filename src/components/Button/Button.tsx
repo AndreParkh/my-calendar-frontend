@@ -5,13 +5,13 @@ import { ForwardedRef, forwardRef } from 'react'
 
 const Button = forwardRef(
   (
-    { className, children, onSubmit, ...props }: ButtonProps,
+    { className, children, onClick, ...props }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>,
   ) => {
     return (
       <button
-        className={cn(styles.btn, className)}
-        onSubmit={onSubmit}
+        className={cn(styles.button, className)}
+        onClick={onClick}
         ref={ref}
         {...props}
       >
@@ -20,4 +20,4 @@ const Button = forwardRef(
     )
   },
 )
-export default Button
+export { Button }

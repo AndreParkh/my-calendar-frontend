@@ -4,6 +4,7 @@ import { renderToPipeableStream } from 'react-dom/server'
 import { StaticRouterProvider } from 'react-router'
 import { StrictMode } from 'react'
 import { getContext } from './utils/router.ts'
+import '@/i18n/i18n.ts';
 
 const render = (
   context: StaticHandlerContext,

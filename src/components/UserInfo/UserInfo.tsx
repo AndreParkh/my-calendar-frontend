@@ -1,12 +1,12 @@
 import './UserInfo.css'
 import { use } from 'react'
-import { UserResponseInterface } from '../../interfaces/UserResponse.interface.ts'
+import { UserResponseInterface } from '@/interfaces/UserResponse.interface.ts'
 
-function UserInfo({
+const UserInfo = ({
   userPromise,
 }: {
   userPromise: Promise<UserResponseInterface>
-}) {
+}) => {
   const user = use(userPromise)
 
   return (
@@ -29,4 +29,4 @@ function UserInfo({
   )
 }
 
-export default UserInfo
+export { UserInfo }
