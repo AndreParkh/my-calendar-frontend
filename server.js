@@ -31,6 +31,7 @@ const sendStreamedResponse = async (
   template,
   renderFn,
   getContext,
+  store
 ) => {
   const [htmlStart, htmlEnd] = template.split('<div id="root"></div>')
 
@@ -52,10 +53,16 @@ const sendStreamedResponse = async (
           callback()
         },
       })
-
+      const finalState = store.getState()
+      const preloadedStateScript = (preloadedState) => `
+        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+          /</g,
+          '\\u003c')}
+      `
       res.write(htmlStart)
 
       transformStream.on('finish', () => {
+        res.write(`<script>${preloadedStateScript(finalState)}</script>`)
         res.end(htmlEnd)
       })
 
@@ -80,6 +87,7 @@ const handleRequestDev = async (req, res, viteDevServer) => {
     const { render, getContext } = await viteDevServer.ssrLoadModule(
       '/src/entry.server.tsx',
     )
+
     await sendStreamedResponse(req, res, template, render, getContext)
   } catch (e) {
     viteDevServer.ssrFixStacktrace(e)

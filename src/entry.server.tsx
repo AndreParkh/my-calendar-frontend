@@ -4,7 +4,7 @@ import { renderToPipeableStream } from 'react-dom/server'
 import { StaticRouterProvider } from 'react-router'
 import { StrictMode } from 'react'
 import { getContext } from './utils/router.ts'
-import '@/i18n/i18n.ts';
+import '@/i18n/i18n.ts'
 
 const render = (
   context: StaticHandlerContext,
@@ -14,7 +14,7 @@ const render = (
   return renderToPipeableStream(
     <div id="root">
       <StrictMode>
-        <StaticRouterProvider router={router} context={context} />
+          <StaticRouterProvider router={router} context={context} />
       </StrictMode>
     </div>,
     options,

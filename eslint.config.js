@@ -6,7 +6,6 @@ import tslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 import prettierConfig from 'eslint-config-prettier'
 
-
 export default tslint.config([
   globalIgnores(['dist']),
   {

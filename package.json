@@ -12,6 +12,7 @@
     "start": "cross-env NODE_ENV=production node server"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "classnames": "^2.5.1",
     "compression": "^1.8.0",
     "express": "^5.1.0",
@@ -21,6 +22,7 @@
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",
     "react-i18next": "^15.6.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.3",
     "reset-css": "^5.0.2",
     "sirv": "^3.0.1"

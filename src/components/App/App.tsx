@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       <Header />
-      <div className={styles.outlet}>
+      <div className={styles['outlet-wrapper']}>
         <Outlet />
       </div>
       <Footer />

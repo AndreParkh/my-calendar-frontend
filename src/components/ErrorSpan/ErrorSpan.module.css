@@ -1,11 +1,11 @@
 .wrapper {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 100%;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 100%;
 }
 
 .message {
-    font-size: 0.75rem;
-    color: red;
+  font-size: 0.75rem;
+  color: red;
 }
