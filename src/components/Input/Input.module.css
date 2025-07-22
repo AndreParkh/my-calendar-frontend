@@ -1,0 +1,28 @@
+.inputWrapper {
+  position: relative;
+  margin-top: 0.5rem;
+  min-width: 320px;
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--gray);
+  width: 100%;
+}
+
+.input:focus-visible {
+  outline-color: var(--gray);
+}
+
+.error {
+  border-color: red;
+}
+
+.errorMessage {
+  position: absolute;
+  color: red;
+  font-size: 0.75rem;
+  padding-left: 1.25rem;
+}

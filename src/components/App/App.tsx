@@ -1,17 +1,17 @@
-import { useState } from "react";
-import UserInfoPage from "../UserInfo/UserInfoPage.tsx";
+import { Outlet } from 'react-router'
+import styles from './App.module.css'
+import { Footer, Header } from '@/components'
 
-export default function App() {
-    const [show, setShow] = useState(false);
-
-    return (
-        <>
-            {show
-                ? <UserInfoPage />
-                : (<button onClick={() => setShow(true)}>
-                    Показать данные пользователя
-                </button>)
-            }
-        </>
-    );
+const App = () => {
+  return (
+    <div className={styles.app}>
+      <Header />
+      <div className={styles['outlet-wrapper']}>
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
+  )
 }
+
+export { App }

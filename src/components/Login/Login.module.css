@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  border: 1px solid var(--gray);
+  border-radius: var(--border-radius);
+  gap: 1.5rem;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.label {
+  width: 100%;
+  text-align: start;
+}
+
+.error {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  color: red;
+  font-size: 0.75rem;
+}
