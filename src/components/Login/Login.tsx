@@ -31,6 +31,7 @@ export const Login = () => {
   }, [token, navigate])
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {
+    clearErrors()
     dispatch(login(data))
   }
 
@@ -70,7 +71,7 @@ export const Login = () => {
             })}
           />
         </label>
-        <Button onClick={() => clearErrors()}>{t('button')}</Button>
+        <Button>{t('button')}</Button>
         <ErrorSpan message={error} />
       </form>
       <NavLink to="../register" className={styles.ref}>
