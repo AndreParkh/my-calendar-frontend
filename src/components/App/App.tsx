@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router'
 import styles from './App.module.css'
+import { Outlet } from 'react-router'
 import { Footer, Header } from '@/components'
 
-const App = () => {
+export const App = () => {
   return (
     <div className={styles.app}>
       <Header />
@@ -13,5 +13,3 @@ const App = () => {
     </div>
   )
 }
-
-export { App }

@@ -1,5 +1,3 @@
-const header = {
+export const header = {
     "name": "Семейный календарь"
 }
-
-export { header }

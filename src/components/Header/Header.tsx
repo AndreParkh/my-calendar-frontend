@@ -1,7 +1,7 @@
 import styles from './Header.module.css'
 import { useTranslation } from 'react-i18next'
 
-const Header = () => {
+export const Header = () => {
   const { t } = useTranslation('header')
 
   return (
@@ -11,5 +11,3 @@ const Header = () => {
     </header>
   )
 }
-
-export { Header }

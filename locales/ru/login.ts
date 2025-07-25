@@ -1,4 +1,4 @@
-const login = {
+export const login = {
   "email": {
     "label": "Адрес электронной почты",
     "placeholder": "Введите адрес электронной почты"
@@ -10,5 +10,3 @@ const login = {
   "button": "Войти",
   "register": "Зарегистрироваться"
 }
-
-export { login }

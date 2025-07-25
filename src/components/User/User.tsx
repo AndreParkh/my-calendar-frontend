@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import UserInfoPage from '../UserInfo/UserInfoPage.tsx'
+import { UserInfoPage } from '../UserInfo/UserInfoPage.tsx'
 
-const User = () => {
+export const User = () => {
   const [show, setShow] = useState(false)
 
   return (
@@ -16,5 +16,3 @@ const User = () => {
     </>
   )
 }
-
-export { User }

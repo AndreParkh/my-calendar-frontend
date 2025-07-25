@@ -133,7 +133,7 @@ jobs:
                 $REPO_PARH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.conclusion')
               if [ "CONCLUSION" == "success" ]; then
                 echo "Deploy completed successfully!"
-                exxit 0
+                exit 0
               else 
                 echo "Deploy failed!"
                 exit 1

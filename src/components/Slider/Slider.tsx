@@ -1,7 +1,7 @@
 import styles from './Slider.module.css'
 import cn from 'classnames'
 
-const Slider = () => {
+export const Slider = () => {
   return (
     <div className={styles.slider}>
       <div className={styles.fakeImage}></div>
@@ -13,5 +13,3 @@ const Slider = () => {
     </div>
   )
 }
-
-export { Slider }

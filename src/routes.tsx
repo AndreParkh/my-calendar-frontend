@@ -9,7 +9,7 @@ import {
   User,
 } from '@/components'
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: '/',
     Component: App,
@@ -30,5 +30,3 @@ const routes: RouteObject[] = [
     Component: CatchAll,
   },
 ]
-
-export { routes }

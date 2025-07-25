@@ -5,7 +5,7 @@ import { header, login } from '@locales/ru'
 i18next.use(initReactI18next).init({
   lng: 'ru',
   fallbackLng: 'ru',
-  debug: process.env.NODE_ENV === 'development',
+  debug: false, //process.env.NODE_ENV === 'development',
   interpolation: {
     escapeValue: false,
   },

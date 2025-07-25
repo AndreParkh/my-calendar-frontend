@@ -1,9 +1,14 @@
 import styles from './Button.module.css'
 import cn from 'classnames'
-import { ButtonProps } from './Button.props.ts'
 import { ForwardedRef, forwardRef } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
 
-const Button = forwardRef(
+export type ButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>
+
+export const Button = forwardRef(
   (
     { className, children, onClick, ...props }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>,
@@ -20,4 +25,3 @@ const Button = forwardRef(
     )
   },
 )
-export { Button }

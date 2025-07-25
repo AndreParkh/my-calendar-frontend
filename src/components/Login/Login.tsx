@@ -2,15 +2,17 @@
 import styles from './Login.module.css'
 import { NavLink, useNavigate } from 'react-router'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { ILogin } from './Login.interface.ts'
-import login from '@/api/auth/login.ts'
 import { Button, ErrorSpan, Input } from '@/components'
 import { useTranslation } from 'react-i18next'
+import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
+import { login } from '@/store/reducers/actionCreators.ts'
+import { clearError } from '@/store/reducers/authSlice.ts'
 
 const emailPattern = RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
 
-const Login = () => {
+export const Login = () => {
   const {
     register,
     handleSubmit,
@@ -18,33 +20,22 @@ const Login = () => {
     clearErrors,
   } = useForm<ILogin>()
   const navigate = useNavigate()
-  const [error, setError] = useState('')
   const { t } = useTranslation('login')
+  const dispatch = useAppDispatch()
+  const { token, error } = useAppSelector((state) => state.authReducer)
 
-  const onSubmit: SubmitHandler<ILogin> = async (data) => {
-    setError('')
-
-    try {
-      const response = await login(data)
-
-      if (response.ok) {
-        const token = await response.json()
-        localStorage.setItem('authToken', token)
-        navigate('/')
-      } else if (response.status === 400) {
-        throw new Error('Неверные учетные данные')
-      } else {
-        throw new Error(`Ошибка авторизации: ${response.status}`)
-      }
-    } catch (error) {
-      setError('Ошибка авторизации')
-      console.error('Ошибка при выполнении запроса:', error)
-      throw error
+  useEffect(() => {
+    if (token) {
+      navigate('/') // или куда нужно
     }
+  }, [token, navigate])
+
+  const onSubmit: SubmitHandler<ILogin> = (data) => {
+    dispatch(login(data))
   }
 
   if (error) {
-    setTimeout(() => setError(''), 3000)
+    setTimeout(() => dispatch(clearError()), 3000)
   }
 
   return (
@@ -88,5 +79,3 @@ const Login = () => {
     </div>
   )
 }
-
-export { Login }

@@ -1,10 +1,23 @@
 import styles from './Input.module.css'
 import cn from 'classnames'
-import { InputProps } from './Input.props.ts'
-import { ForwardedRef, forwardRef } from 'react'
+import {
+  ForwardedRef,
+  forwardRef,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+} from 'react'
 import { ErrorSpan } from '@/components'
+import { FieldError } from 'react-hook-form'
 
-const Input = forwardRef(
+interface InputProps
+  extends DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
+  error?: FieldError
+}
+
+export const Input = forwardRef(
   (
     { error, className, ...props }: InputProps,
     ref: ForwardedRef<HTMLInputElement>,
@@ -23,5 +36,3 @@ const Input = forwardRef(
     )
   },
 )
-
-export { Input }

@@ -3,7 +3,10 @@ import { createStaticHandler, createStaticRouter } from 'react-router'
 import { routes } from '../routes.tsx'
 import { createFetchRequest } from './request.ts'
 
-const getContext = async (req: express.Request, res: express.Response) => {
+export const getContext = async (
+  req: express.Request,
+  res: express.Response,
+) => {
   const { query, dataRoutes } = createStaticHandler(routes)
   const remixRequest = createFetchRequest(req, res)
   const context = await query(remixRequest)
@@ -13,5 +16,3 @@ const getContext = async (req: express.Request, res: express.Response) => {
 
   return { context, router }
 }
-
-export { getContext }

@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import { fetchUser } from '@/api/public/fetchUser.ts'
 import { UserInfo } from '@/components'
 
-function UserInfoPage() {
+export const UserInfoPage = () => {
   const userPromise = fetchUser()
   return (
     <div className="user">
@@ -14,5 +14,3 @@ function UserInfoPage() {
     </div>
   )
 }
-
-export default UserInfoPage
