@@ -1,9 +1,9 @@
 import type * as express from 'express'
 
-function createFetchRequest(
+export const createFetchRequest = (
   request: express.Request,
   response: express.Response,
-) {
+) => {
   const origin = `${request.protocol}://${request.get('host')}`
 
   const url = new URL(request.originalUrl || request.url, origin)
@@ -37,5 +37,3 @@ function createFetchRequest(
 
   return new Request(url.href, init)
 }
-
-export { createFetchRequest }

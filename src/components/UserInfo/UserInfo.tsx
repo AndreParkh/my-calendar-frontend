@@ -2,7 +2,7 @@ import './UserInfo.css'
 import { use } from 'react'
 import { UserResponseInterface } from '@/interfaces/UserResponse.interface.ts'
 
-const UserInfo = ({
+export const UserInfo = ({
   userPromise,
 }: {
   userPromise: Promise<UserResponseInterface>
@@ -28,5 +28,3 @@ const UserInfo = ({
     </div>
   )
 }
-
-export { UserInfo }

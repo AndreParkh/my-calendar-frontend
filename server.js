@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import express from 'express'
 import { Transform } from 'node:stream'
+import serialize from 'serialize-javascript'
 
 const port = process.env.PORT || 5003
 const base = process.env.BASE || '/'
@@ -28,9 +29,9 @@ const setupProdMiddlewares = async (app) => {
 const sendStreamedResponse = async (
   req,
   res,
-  template,
   renderFn,
   getContext,
+  template,
   store
 ) => {
   const [htmlStart, htmlEnd] = template.split('<div id="root"></div>')
@@ -53,16 +54,12 @@ const sendStreamedResponse = async (
           callback()
         },
       })
-      const finalState = store.getState()
-      const preloadedStateScript = (preloadedState) => `
-        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-          /</g,
-          '\\u003c')}
-      `
-      res.write(htmlStart)
+      const initialState = store.getState()
+      const stateScript = `<script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>`
 
+      res.write(htmlStart)
       transformStream.on('finish', () => {
-        res.write(`<script>${preloadedStateScript(finalState)}</script>`)
+        res.write(stateScript)
         res.end(htmlEnd)
       })
 
@@ -84,11 +81,11 @@ const handleRequestDev = async (req, res, viteDevServer) => {
   try {
     const rawTemplate = await fs.readFile('./index.html', 'utf-8')
     const template = await viteDevServer.transformIndexHtml(url, rawTemplate)
-    const { render, getContext } = await viteDevServer.ssrLoadModule(
+    const { render, getContext, store } = await viteDevServer.ssrLoadModule(
       '/src/entry.server.tsx',
     )
 
-    await sendStreamedResponse(req, res, template, render, getContext)
+    await sendStreamedResponse(req, res, render, getContext,template, store)
   } catch (e) {
     viteDevServer.ssrFixStacktrace(e)
     console.error(e.stack)
@@ -98,9 +95,9 @@ const handleRequestDev = async (req, res, viteDevServer) => {
 const handleRequestProd = async (req, res) => {
   try {
     const template = await fs.readFile('./dist/client/index.html', 'utf-8')
-    const { render, getContext } = await import('./dist/server/entry.server.js')
+    const { render, getContext, store } = await import('./dist/server/entry.server.js')
 
-    await sendStreamedResponse(req, res, template, render, getContext)
+    await sendStreamedResponse(req, res, render, getContext,template, store)
   } catch (e) {
     console.error(e.stack)
     res.status(500).end(e.stack)
