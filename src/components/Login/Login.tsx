@@ -53,8 +53,8 @@ export const Login = () => {
             placeholder={t('email.placeholder')}
             error={errors.email}
             {...register('email', {
-              required: { value: true, message: '*обязательное поле' },
-              pattern: emailPattern,
+              required: { value: true, message: t('email.required.message') },
+              pattern: { value: emailPattern, message: t('email.pattern.message') },
             })}
           />
         </label>
@@ -66,16 +66,16 @@ export const Login = () => {
             placeholder={t('password.placeholder')}
             error={errors.password}
             {...register('password', {
-              required: { value: true, message: '*обязательное поле' },
-              minLength: 6,
+              required: { value: true, message: t('password.required.message') },
+              minLength: { value: 6, message:  t('password.length.message') },
             })}
           />
         </label>
-        <Button>{t('button')}</Button>
+        <Button>{t('button.text')}</Button>
         <ErrorSpan message={error} />
       </form>
       <NavLink to="../register" className={styles.ref}>
-        {t('register')}
+        {t('register.text')}
       </NavLink>
     </div>
   )
