@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.icon}></div>
-      <h1 className={styles.name}>{t('name')}</h1>
+      <h1 className={styles.name}>{t('top.title')}</h1>
     </header>
   )
 }

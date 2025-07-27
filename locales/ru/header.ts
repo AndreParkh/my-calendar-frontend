@@ -1,3 +1,5 @@
 export const header = {
-  name: 'Семейный календарь',
+  top: {
+    title: 'Семейный календарь'
+  }
 }
