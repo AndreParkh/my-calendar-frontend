@@ -1,28 +1,52 @@
 import { RouteObject } from 'react-router-dom'
+import { redirect } from 'react-router'
+import { parse } from 'cookie'
 import {
   App,
   AuthLayout,
   CatchAll,
   Error,
   Login,
+  ProtectedLayout,
   Register,
   User,
 } from '@/components'
 
+const requireAuthLoader = (args: { request: Request }) => {
+  const cookies = parse(args.request.headers.get('Cookie') || '')
+  const token = cookies['auth_token']
+
+  if (!token) {
+    return redirect('/auth/login', 302)
+  }
+  return null
+}
+
 export const routes: RouteObject[] = [
   {
     path: '/',
-    Component: App,
+    element: <App />,
     children: [
       {
         path: 'auth',
-        Component: AuthLayout,
+        element: <AuthLayout />,
         children: [
-          { path: 'login', Component: Login },
-          { path: 'register', Component: Register },
+          { path: 'login', element: <Login /> },
+          { path: 'register', element: <Register /> },
         ],
       },
-      { path: 'app', Component: User, errorElement: <Error /> },
+      {
+        path: 'app',
+        element: <ProtectedLayout />,
+        loader: requireAuthLoader,
+        children: [
+          {
+            path: 'user',
+            element: <User />,
+            errorElement: <Error />,
+          },
+        ],
+      },
     ],
   },
   {

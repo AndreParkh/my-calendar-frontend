@@ -85,7 +85,7 @@ const handleRequestDev = async (req, res, viteDevServer) => {
       '/src/entry.server.tsx',
     )
 
-    await sendStreamedResponse(req, res, render, getContext,template, store)
+    await sendStreamedResponse(req, res, render, getContext, template, store)
   } catch (e) {
     viteDevServer.ssrFixStacktrace(e)
     console.error(e.stack)
@@ -95,9 +95,11 @@ const handleRequestDev = async (req, res, viteDevServer) => {
 const handleRequestProd = async (req, res) => {
   try {
     const template = await fs.readFile('./dist/client/index.html', 'utf-8')
-    const { render, getContext, store } = await import('./dist/server/entry.server.js')
+    const { render, getContext, store } = await import(
+      './dist/server/entry.server.js'
+    )
 
-    await sendStreamedResponse(req, res, render, getContext,template, store)
+    await sendStreamedResponse(req, res, render, getContext, template, store)
   } catch (e) {
     console.error(e.stack)
     res.status(500).end(e.stack)

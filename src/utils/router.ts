@@ -9,10 +9,20 @@ export const getContext = async (
 ) => {
   const { query, dataRoutes } = createStaticHandler(routes)
   const remixRequest = createFetchRequest(req, res)
-  const context = await query(remixRequest)
-  if (context instanceof Response) throw context
 
-  const router = createStaticRouter(dataRoutes, context)
+    const context = await query(remixRequest)
+    if (context instanceof Response) {
+      const status = context.status
+      const location = context.headers.get('Location')
 
-  return { context, router }
+      if (location && status >= 300 && status < 400) {
+        res.redirect(status, location)
+      } else {
+        res.status(status).end()
+      }
+        throw context
+    }
+    const router = createStaticRouter(dataRoutes, context)
+    return { context, router }
+
 }
