@@ -32,7 +32,7 @@ const sendStreamedResponse = async (
   renderFn,
   getContext,
   template,
-  store
+  store,
 ) => {
   const [htmlStart, htmlEnd] = template.split('<div id="root"></div>')
 

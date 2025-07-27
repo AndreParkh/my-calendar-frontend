@@ -10,21 +10,21 @@ export const UserInfo = ({
   const user = use(userPromise)
 
   return (
-    <div className="user">
-      <p>ID: {user.id}</p>
-      <p>Email: {user.email}</p>
-      <p>Имя: {user.firstName}</p>
-      <p>Фамилия: {user.lastName}</p>
-      <p>Роль: {user.role}</p>
-      <p>
+    <ul className="user">
+      <li>ID: {user.id}</li>
+      <li>Email: {user.email}</li>
+      <li>Имя: {user.firstName}</li>
+      <li>Фамилия: {user.lastName}</li>
+      <li>Роль: {user.role}</li>
+      <li>
         Рабочее время: с {user.workStartTime.slice(0, 5)} до{' '}
         {user.workEndTime.slice(0, 5)}
-      </p>
-      <p>
+      </li>
+      <li>
         Отпуск: c {user.vacationStart} по {user.vacationEnd}{' '}
-      </p>
-      <p>Создан: {new Date(user.createdAt).toLocaleString()}</p>
-      <p>Обновлен: {new Date(user.updatedAt).toLocaleString()}</p>
-    </div>
+      </li>
+      <li>Создан: {new Date(user.createdAt).toLocaleString()}</li>
+      <li>Обновлен: {new Date(user.updatedAt).toLocaleString()}</li>
+    </ul>
   )
 }
