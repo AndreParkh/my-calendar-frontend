@@ -1,14 +1,14 @@
 'use client'
 import styles from './Login.module.css'
-import { NavLink, useNavigate } from 'react-router'
+import { NavLink } from 'react-router'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useEffect } from 'react'
 import { ILogin } from './Login.interface.ts'
 import { Button, ErrorSpan, Input } from '@/components'
 import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
 import { login } from '@/store/reducers/actionCreators.ts'
-import { clearError } from '@/store/reducers/authSlice.ts'
+import { clearAuthError } from '@/store/reducers/authSlice.ts'
+import { selectAuthError } from '@/store/selectors.ts'
 
 const emailPattern = RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
 
@@ -19,63 +19,55 @@ export const Login = () => {
     formState: { errors },
     clearErrors,
   } = useForm<ILogin>()
-  const navigate = useNavigate()
   const { t } = useTranslation('login')
   const dispatch = useAppDispatch()
-  const { token, error } = useAppSelector((state) => state.authReducer)
-
-  useEffect(() => {
-    if (token) {
-      navigate('/') // или куда нужно
-    }
-  }, [token, navigate])
+  const error = useAppSelector(selectAuthError)
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {
     clearErrors()
     dispatch(login(data))
   }
 
-  if (error) {
-    setTimeout(() => dispatch(clearError()), 3000)
-  }
-
   return (
     <div className={styles.wrapper}>
-      <form
-        className={styles.form}
-        onSubmit={handleSubmit(async (data) => await onSubmit(data))}
-      >
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label}>
-          {t('email.label')}
+          {t('form.email.label')}
           <Input
             className={styles.input}
             type="text"
-            placeholder={t('email.placeholder')}
+            placeholder={t('form.email.placeholder')}
             error={errors.email}
             {...register('email', {
-              required: { value: true, message: t('email.required.message') },
-              pattern: { value: emailPattern, message: t('email.pattern.message') },
+              required: { value: true, message: t('form.email.required.message') },
+              pattern: {
+                value: emailPattern,
+                message: t('form.email.pattern.message'),
+              },
             })}
           />
         </label>
         <label className={styles.label}>
-          {t('password.label')}
+          {t('form.password.label')}
           <Input
             className={styles.input}
             type="password"
-            placeholder={t('password.placeholder')}
+            placeholder={t('form.password.placeholder')}
             error={errors.password}
             {...register('password', {
-              required: { value: true, message: t('password.required.message') },
-              minLength: { value: 6, message:  t('password.length.message') },
+              required: {
+                value: true,
+                message: t('form.password.required.message'),
+              },
+              minLength: { value: 6, message: t('form.password.length.message') },
             })}
           />
         </label>
-        <Button>{t('button.text')}</Button>
-        <ErrorSpan message={error} />
+        <Button>{t('form.button.text')}</Button>
+        <ErrorSpan message={error} clearError={clearAuthError} />
       </form>
       <NavLink to="../register" className={styles.ref}>
-        {t('register.text')}
+        {t('form.register.text')}
       </NavLink>
     </div>
   )
