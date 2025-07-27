@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,html}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,html}\"",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry.server.tsx --outDir dist/server",
@@ -16,6 +16,7 @@
     "axios": "^1.11.0",
     "classnames": "^2.5.1",
     "compression": "^1.8.0",
+    "cookie": "^1.0.2",
     "express": "^5.1.0",
     "i18next": "^25.3.2",
     "i18next-http-backend": "^3.0.2",
@@ -30,7 +31,6 @@
     "sirv": "^3.0.1"
   },
   "devDependencies": {
-    "dotenv-expand": "^12.0.2",
     "@eslint/js": "^9.29.0",
     "@types/express": "^5.0.3",
     "@types/react": "^19.1.8",

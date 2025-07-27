@@ -24,8 +24,8 @@ export default tslint.config([
     rules: {
       'no-unused-vars': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
-      'semi': ['off'],
-      '@typescript-eslint/semi': ['off']
+      semi: ['off'],
+      '@typescript-eslint/semi': ['off'],
     },
   },
 ])
