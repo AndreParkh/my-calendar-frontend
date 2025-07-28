@@ -1,6 +1,5 @@
 import { RouteObject } from 'react-router-dom'
 import { redirect } from 'react-router'
-import { parse } from 'cookie'
 import {
   App,
   AuthLayout,
@@ -11,13 +10,14 @@ import {
   Register,
   User,
 } from '@/components'
+import { AUTH_TOKEN } from '@/constants/constants.ts'
 
 const requireAuthLoader = (args: { request: Request }) => {
-  const cookies = parse(args.request.headers.get('Cookie') || '')
-  const token = cookies['auth_token']
+  const token = args.request.headers.get(AUTH_TOKEN) || ''
 
   if (!token) {
-    return redirect('/auth/login', 302)
+    const returnTo = new URL(args.request.url).pathname
+    return redirect(`/auth/login?returnTo=${encodeURIComponent(returnTo)}`, 302)
   }
   return null
 }

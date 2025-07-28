@@ -18,9 +18,7 @@ export const login = createAsyncThunk<string, ILogin, { rejectValue: string }>(
           },
         },
       )
-      const token = response.data.token
-      localStorage.setItem('token', token)
-      return token
+      return response.data.token
     } catch {
       return thunkAPI.rejectWithValue('Неуспешная авторизация')
     }

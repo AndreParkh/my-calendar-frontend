@@ -2,6 +2,8 @@ import fs from 'node:fs/promises'
 import express from 'express'
 import { Transform } from 'node:stream'
 import serialize from 'serialize-javascript'
+// import { TYPE_TOKEN } from './src/constants/constants.js'
+// import { setToken } from './src/store/reducers/authSlice.js'
 
 const port = process.env.PORT || 5003
 const base = process.env.BASE || '/'
@@ -26,6 +28,16 @@ const setupProdMiddlewares = async (app) => {
   return null
 }
 
+const extractTokenFromRequest = (req) => {
+  const authHeader = req.headers.authorization
+  if (authHeader && authHeader.startsWith('authToken')) {
+    const token = authHeader.split('')[1]
+    console.log('token: ', token)
+    return token
+  }
+  return ''
+}
+
 const sendStreamedResponse = async (
   req,
   res,
@@ -35,8 +47,13 @@ const sendStreamedResponse = async (
   store,
 ) => {
   const [htmlStart, htmlEnd] = template.split('<div id="root"></div>')
+  const token = extractTokenFromRequest(req)
+  if (token) {
+    // store.dispatch(setToken(token))
+  }
 
   const { context, router } = await getContext(req, res)
+
 
   const { pipe, abort } = renderFn(context, router, {
     onShellError() {
@@ -54,6 +71,8 @@ const sendStreamedResponse = async (
           callback()
         },
       })
+
+
       const initialState = store.getState()
       const stateScript = `<script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>`
 
