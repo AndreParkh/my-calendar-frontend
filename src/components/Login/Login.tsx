@@ -1,6 +1,6 @@
 'use client'
 import styles from './Login.module.css'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate, useLocation } from 'react-router'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { ILogin } from './Login.interface.ts'
 import { Button, ErrorSpan, Input } from '@/components'
@@ -8,7 +8,8 @@ import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
 import { login } from '@/store/reducers/actionCreators.ts'
 import { clearAuthError } from '@/store/reducers/authSlice.ts'
-import { selectAuthError } from '@/store/selectors.ts'
+import { selectAuthError, selectAuthToken } from '@/store/selectors.ts'
+import { useEffect } from 'react'
 
 const emailPattern = RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
 
@@ -22,10 +23,34 @@ export const Login = () => {
   const { t } = useTranslation('login')
   const dispatch = useAppDispatch()
   const error = useAppSelector(selectAuthError)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const token = useAppSelector(selectAuthToken)
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const returnTo = params.get('returnTo')
+    if (returnTo) {
+      navigate('.', {replace: true, state: {from: { pathname: returnTo }}})
+    }
+  }, [location.search, navigate])
+
+  const from = location.state?.from?.pathname
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, {replace: true})
+    }
+  }, [token, navigate])
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {
-    clearErrors()
-    dispatch(login(data))
+    try {
+      clearErrors()
+      dispatch(login(data))
+      // navigate(from, { replace: true })
+    } catch (e) {
+
+    }
   }
 
   return (
