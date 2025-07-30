@@ -1,10 +1,8 @@
-import { RootState } from '@/store/store.ts'
+import { RootStore } from '@/store/store.ts'
 
-const selectAuthState = (state: RootState) => state.authReducer
+const selectAuthState = (state: RootStore) => state.authReducer
 
-export const selectAuthToken = (state: RootState) =>
-  selectAuthState(state).token
-export const selectAuthError = (state: RootState) =>
+export const selectAuthError = (state: RootStore) =>
   selectAuthState(state).error
-export const selectAuthLoading = (state: RootState) =>
+export const selectAuthLoading = (state: RootStore) =>
   selectAuthState(state).loading
