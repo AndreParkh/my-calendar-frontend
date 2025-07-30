@@ -7,9 +7,10 @@ import {
   Login,
   ProtectedLayout,
   Register,
-  User, redirectAuthLoader, redirectNonAuthLoader
+  User,
+  redirectAuthLoader,
+  redirectNonAuthLoader,
 } from '@/components'
-
 
 export const routes: RouteObject[] = [
   {
