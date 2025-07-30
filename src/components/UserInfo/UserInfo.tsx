@@ -17,7 +17,7 @@ export const UserInfo = ({
       <li>Фамилия: {user.lastName}</li>
       <li>Роль: {user.role}</li>
       <li>
-        Рабочее время: с {user.workStartTime.slice(0, 5)} до{' '}
+        Рабочее время: с {user.workStartTime.slice(0, 5)} до
         {user.workEndTime.slice(0, 5)}
       </li>
       <li>

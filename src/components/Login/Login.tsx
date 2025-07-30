@@ -78,7 +78,9 @@ export const Login = () => {
             })}
           />
         </label>
-        <Button>{loading ? t('form.button.loading') : t('form.button.text')}</Button>
+        <Button>
+          {loading ? t('form.button.loading') : t('form.button.text')}
+        </Button>
         <ErrorSpan message={error} clearError={clearAuthError} />
       </form>
       <NavLink to="../register" className={styles.ref}>

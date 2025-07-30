@@ -6,7 +6,7 @@ export const App = () => {
   return (
     <div className={styles.app}>
       <Header />
-      <div className={styles['outlet-wrapper']}>
+      <div className={styles.outletWrapper}>
         <Outlet />
       </div>
       <Footer />
