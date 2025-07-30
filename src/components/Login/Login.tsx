@@ -1,15 +1,14 @@
 'use client'
 import styles from './Login.module.css'
-import { NavLink, useNavigate, useLocation } from 'react-router'
+import { NavLink } from 'react-router'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { ILogin } from './Login.interface.ts'
 import { Button, ErrorSpan, Input } from '@/components'
 import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
-import { login } from '@/store/reducers/actionCreators.ts'
+import { login } from '@/store/reducers/authThunks.ts'
 import { clearAuthError } from '@/store/reducers/authSlice.ts'
-import { selectAuthError, selectAuthToken } from '@/store/selectors.ts'
-import { useEffect } from 'react'
+import { selectAuthError, selectAuthLoading } from '@/store/selectors.ts'
+import { ILogin } from '@/store/types.ts'
 
 const emailPattern = RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
 
@@ -22,34 +21,19 @@ export const Login = () => {
   } = useForm<ILogin>()
   const { t } = useTranslation('login')
   const dispatch = useAppDispatch()
+  const loading = useAppSelector(selectAuthLoading)
   const error = useAppSelector(selectAuthError)
-  const navigate = useNavigate()
-  const location = useLocation()
-  const token = useAppSelector(selectAuthToken)
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search)
-    const returnTo = params.get('returnTo')
-    if (returnTo) {
-      navigate('.', {replace: true, state: {from: { pathname: returnTo }}})
-    }
-  }, [location.search, navigate])
-
-  const from = location.state?.from?.pathname
-
-  useEffect(() => {
-    if (token) {
-      navigate(from, {replace: true})
-    }
-  }, [token, navigate])
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {
     try {
       clearErrors()
       dispatch(login(data))
-      // navigate(from, { replace: true })
     } catch (e) {
-
+      if (e instanceof Error) {
+        console.error(e.message)
+      } else {
+        console.error('Необработанная ошибка')
+      }
     }
   }
 
@@ -64,7 +48,10 @@ export const Login = () => {
             placeholder={t('form.email.placeholder')}
             error={errors.email}
             {...register('email', {
-              required: { value: true, message: t('form.email.required.message') },
+              required: {
+                value: true,
+                message: t('form.email.required.message'),
+              },
               pattern: {
                 value: emailPattern,
                 message: t('form.email.pattern.message'),
@@ -84,11 +71,14 @@ export const Login = () => {
                 value: true,
                 message: t('form.password.required.message'),
               },
-              minLength: { value: 6, message: t('form.password.length.message') },
+              minLength: {
+                value: 6,
+                message: t('form.password.length.message'),
+              },
             })}
           />
         </label>
-        <Button>{t('form.button.text')}</Button>
+        <Button>{loading ? t('form.button.loading') : t('form.button.text')}</Button>
         <ErrorSpan message={error} clearError={clearAuthError} />
       </form>
       <NavLink to="../register" className={styles.ref}>

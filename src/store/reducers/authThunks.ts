@@ -1,7 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { LoginResponse } from '@/store/types.ts'
-import { ILogin } from '@/components/Login/Login.interface.ts'
+import Cookies from 'js-cookie'
+import { ILogin, LoginResponse } from '@/store/types.ts'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { AUTH_TOKEN } from '@/constants/constants.ts'
 
 const api = import.meta.env.VITE_API_DOMAIN
 
@@ -18,7 +19,9 @@ export const login = createAsyncThunk<string, ILogin, { rejectValue: string }>(
           },
         },
       )
-      return response.data.token
+      const token = response.data.token
+      Cookies.set(AUTH_TOKEN, token)
+      return token
     } catch {
       return thunkAPI.rejectWithValue('Неуспешная авторизация')
     }

@@ -1,16 +1,16 @@
 import styles from './ErrorSpan.module.css'
 import { useAppDispatch } from '@/store/hooks.ts'
-import { UnknownAction } from '@reduxjs/toolkit'
+import { ActionCreatorWithoutPayload } from '@reduxjs/toolkit'
 
 interface ErrorSpanProps {
-  message: string
-  clearError: () => UnknownAction
+  message?: string
+  clearError?: ActionCreatorWithoutPayload
 }
 
 export const ErrorSpan = ({ message, clearError }: ErrorSpanProps) => {
   const dispatch = useAppDispatch()
 
-  if (message) {
+  if (message && clearError) {
     setTimeout(() => dispatch(clearError()), 3000)
   }
 

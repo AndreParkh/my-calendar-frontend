@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AuthState } from '@/store/types.ts'
-import { login } from '@/store/reducers/actionCreators.ts'
+import { login } from '@/store/reducers/authThunks.ts'
 
 const initialState: AuthState = {
-  token: '',
   loading: false,
   error: '',
 }
@@ -15,9 +14,6 @@ const authSlice = createSlice({
     clearAuthError: (state) => {
       state.error = ''
     },
-    setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload
-    }
   },
   extraReducers: (builder) => {
     builder
@@ -25,8 +21,7 @@ const authSlice = createSlice({
         state.loading = true
         state.error = ''
       })
-      .addCase(login.fulfilled, (state, action: PayloadAction<string>) => {
-        state.token = action.payload
+      .addCase(login.fulfilled, (state) => {
         state.loading = false
         state.error = ''
       })
@@ -40,5 +35,5 @@ const authSlice = createSlice({
   },
 })
 
-export const { clearAuthError, setToken } = authSlice.actions
+export const { clearAuthError } = authSlice.actions
 export default authSlice.reducer

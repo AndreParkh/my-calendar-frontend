@@ -22,6 +22,7 @@ export const login = {
     },
     button: {
       text: 'Войти',
+      loading: 'Выполняется вход...'
     },
     register: {
       text: 'Зарегистрироваться',

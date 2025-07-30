@@ -1,26 +1,15 @@
 import { RouteObject } from 'react-router-dom'
-import { redirect } from 'react-router'
 import {
   App,
   AuthLayout,
   CatchAll,
-  Error,
+  UserError,
   Login,
   ProtectedLayout,
   Register,
-  User,
+  User, redirectAuthLoader, redirectNonAuthLoader
 } from '@/components'
-import { AUTH_TOKEN } from '@/constants/constants.ts'
 
-const requireAuthLoader = (args: { request: Request }) => {
-  const token = args.request.headers.get(AUTH_TOKEN) || ''
-
-  if (!token) {
-    const returnTo = new URL(args.request.url).pathname
-    return redirect(`/auth/login?returnTo=${encodeURIComponent(returnTo)}`, 302)
-  }
-  return null
-}
 
 export const routes: RouteObject[] = [
   {
@@ -30,6 +19,7 @@ export const routes: RouteObject[] = [
       {
         path: 'auth',
         element: <AuthLayout />,
+        loader: redirectAuthLoader,
         children: [
           { path: 'login', element: <Login /> },
           { path: 'register', element: <Register /> },
@@ -38,12 +28,12 @@ export const routes: RouteObject[] = [
       {
         path: 'app',
         element: <ProtectedLayout />,
-        loader: requireAuthLoader,
+        loader: redirectNonAuthLoader,
         children: [
           {
             path: 'user',
             element: <User />,
-            errorElement: <Error />,
+            errorElement: <UserError />,
           },
         ],
       },
