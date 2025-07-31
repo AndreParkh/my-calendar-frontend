@@ -5,6 +5,7 @@ import { parseCookies } from '@/utils/parseCookies.ts'
 export const redirectNonAuthLoader = (args: { request: Request }) => {
   const cookies = parseCookies(args.request.headers.get('cookie'))
   const token = cookies[AUTH_TOKEN]
+  console.log('redirectNonAuthLoader. token: ', token)
   if (!token) {
     const location = new URL(args.request.url).pathname
     return redirect(`/auth/login?redirect=${encodeURIComponent(location)}`, 302)

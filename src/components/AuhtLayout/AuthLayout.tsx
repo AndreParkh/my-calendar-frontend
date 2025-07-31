@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router'
 import styles from './AuthLayout.module.css'
+import { Outlet } from 'react-router'
 import { Slider } from '@/components'
 
 export const AuthLayout = () => {

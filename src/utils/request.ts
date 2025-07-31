@@ -11,19 +11,15 @@ export const createFetchRequest = (
   const controller = new AbortController()
   response.on('close', () => controller.abort())
 
-  const headers = new Headers()
-
-  for (const [key, values] of Object.entries(request.headers)) {
-    if (values) {
-      if (Array.isArray(values)) {
-        for (const value of values) {
-          headers.append(key, value)
-        }
-      } else {
-        headers.set(key, values)
-      }
+  const headers = Object.entries(request.headers).reduce((acc, [key, values]) => {
+    if (!values) return acc
+    if (Array.isArray(values)) {
+      values.forEach(value => acc.append(key, value))
+    } else {
+      acc.set(key, values)
     }
-  }
+    return acc
+  }, new Headers)
 
   const init: RequestInit = {
     method: request.method,

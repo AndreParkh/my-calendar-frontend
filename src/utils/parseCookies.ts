@@ -1,16 +1,13 @@
+const emptyCookies: Record<string, string> = {}
+
 export const parseCookies = (
   cookiesString: string | undefined | null,
 ): Record<string, string> => {
-  if (!cookiesString) return {}
+  if (!cookiesString) return emptyCookies
 
-  const cookies: Record<string, string> = {}
-
-  cookiesString.split(';').forEach((cookie) => {
+  return cookiesString.split(';').reduce((acc, cookie) => {
     const [name, value] = cookie.trim().split('=')
-    if (name && value) {
-      cookies[decodeURIComponent(name)] = decodeURIComponent(value)
-    }
-  })
-
-  return cookies
+    acc[decodeURIComponent(name)] = decodeURIComponent(value)
+    return acc
+  }, emptyCookies)
 }
