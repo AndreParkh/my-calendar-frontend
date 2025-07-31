@@ -1,12 +1,12 @@
 .inputWrapper {
   position: relative;
-  margin-top: 0.5rem;
-  min-width: 320px;
+  margin-top: .5rem;
+  min-width: 20rem;
 }
 
 .input {
   box-sizing: border-box;
-  padding: 0.75rem 1rem;
+  padding: .75rem 1rem;
   border-radius: var(--border-radius);
   border: 1px solid var(--gray);
   width: 100%;
@@ -23,6 +23,6 @@
 .errorMessage {
   position: absolute;
   color: red;
-  font-size: 0.75rem;
+  font-size: .75rem;
   padding-left: 1.25rem;
 }

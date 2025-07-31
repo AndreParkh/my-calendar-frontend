@@ -9,7 +9,7 @@ export const redirectAuthLoader = (args: { request: Request }) => {
     const searchUrl = new URL(args.request.url).search
     const searchParams = new URLSearchParams(searchUrl)
     const redirectTo = searchParams.get('redirect') || '/app'
-    return redirect(`${redirectTo}`, 302)
+    return redirect(redirectTo, 302)
   }
   return null
 }

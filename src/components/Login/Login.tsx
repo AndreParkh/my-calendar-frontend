@@ -1,6 +1,6 @@
 'use client'
 import styles from './Login.module.css'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button, ErrorSpan, Input } from '@/components'
 import { useTranslation } from 'react-i18next'
@@ -23,11 +23,12 @@ export const Login = () => {
   const dispatch = useAppDispatch()
   const loading = useAppSelector(selectAuthLoading)
   const error = useAppSelector(selectAuthError)
+  const navigate = useNavigate()
 
-  const onSubmit: SubmitHandler<ILogin> = (data) => {
+  const onSubmit: SubmitHandler<ILogin> = (credentials) => {
     try {
       clearErrors()
-      dispatch(login(data))
+      dispatch(login({ credentials, navigate }))
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message)

@@ -1,11 +1,17 @@
 .wrapper {
-  position: absolute;
+  height: 0;
   width: 100%;
   text-align: center;
-  top: 100%;
+  overflow: hidden;
+  transition: height ease .3s;
+}
+
+.wrapper-show {
+  height: 1rem;
 }
 
 .message {
-  font-size: 0.75rem;
+  /*height: 0;*/
+  font-size: .75rem;
   color: red;
 }

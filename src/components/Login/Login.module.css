@@ -9,7 +9,6 @@
 }
 
 .form {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -18,12 +17,4 @@
 .label {
   width: 100%;
   text-align: start;
-}
-
-.error {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  color: red;
-  font-size: 0.75rem;
 }
