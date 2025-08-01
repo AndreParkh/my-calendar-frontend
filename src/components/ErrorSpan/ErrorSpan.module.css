@@ -1,13 +1,7 @@
 .wrapper {
-  height: 0;
+  height: 1rem;
   width: 100%;
   text-align: center;
-  overflow: hidden;
-  transition: height ease .3s;
-}
-
-.wrapper-show {
-  height: 1rem;
 }
 
 .message {
