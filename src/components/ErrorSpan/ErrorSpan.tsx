@@ -16,7 +16,7 @@ export const ErrorSpan = ({ message, clearError }: ErrorSpanProps) => {
   }
 
   return (
-    <div className={ cn(styles.wrapper, { [styles.wrapperShow]: message }) }>
+    <div className={cn(styles.wrapper, { [styles.wrapperShow]: message })}>
       <span className={cn(styles.message)}>{message}</span>
     </div>
   )

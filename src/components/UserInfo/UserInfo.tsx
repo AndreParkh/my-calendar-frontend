@@ -1,4 +1,3 @@
-import './UserInfo.css'
 import { use } from 'react'
 import { UserResponseInterface } from '@/interfaces/UserResponse.interface.ts'
 

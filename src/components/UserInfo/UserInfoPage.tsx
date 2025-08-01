@@ -1,4 +1,3 @@
-import './UserInfo.css'
 import { Suspense } from 'react'
 import { fetchUser } from '@/api/public/fetchUser.ts'
 import { UserInfo } from '@/components'
