@@ -1,41 +1,38 @@
-import type * as express from "express";
+import type * as express from 'express'
 
-function createFetchRequest(
-    request: express.Request,
-    response: express.Response
-) {
-    const origin = `${request.protocol}://${request.get('host')}`
+export const createFetchRequest = (
+  request: express.Request,
+  response: express.Response,
+) => {
+  const origin = `${request.protocol}://${request.get('host')}`
 
-    const url = new URL(request.originalUrl || request.url, origin)
+  const url = new URL(request.originalUrl || request.url, origin)
 
-    const controller = new AbortController()
-    response.on('close',() => controller.abort())
+  const controller = new AbortController()
+  response.on('close', () => controller.abort())
 
-    const headers = new Headers()
+  const headers = Object.entries(request.headers).reduce(
+    (acc, [key, values]) => {
+      if (!values) return acc
+      if (Array.isArray(values)) {
+        values.forEach((value) => acc.append(key, value))
+      } else {
+        acc.set(key, values)
+      }
+      return acc
+    },
+    new Headers(),
+  )
 
-    for (const [key, values] of Object.entries(request.headers)) {
-        if (values) {
-            if (Array.isArray(values)) {
-                for (const value of values) {
-                    headers.append(key, value)
-                }
-            } else {
-                headers.set(key, values)
-            }
-        }
-    }
+  const init: RequestInit = {
+    method: request.method,
+    headers,
+    signal: controller.signal,
+  }
 
-    const init: RequestInit = {
-        method: request.method,
-        headers,
-        signal: controller.signal
-    }
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    init.body = request.body
+  }
 
-    if (request.method !== 'GET' && request.method !== 'HEAD') {
-        init.body = request.body
-    }
-
-    return new Request(url.href, init)
+  return new Request(url.href, init)
 }
-
-export { createFetchRequest }

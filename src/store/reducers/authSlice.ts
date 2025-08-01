@@ -1,0 +1,39 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { AuthState } from '@/store/types.ts'
+import { login } from '@/store/reducers/authThunks.ts'
+
+const initialState: AuthState = {
+  loading: false,
+  error: '',
+}
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    clearAuthError: (state) => {
+      state.error = ''
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.pending, (state) => {
+        state.loading = true
+        state.error = ''
+      })
+      .addCase(login.fulfilled, (state) => {
+        state.loading = false
+        state.error = ''
+      })
+      .addCase(
+        login.rejected,
+        (state, action: PayloadAction<string | undefined>) => {
+          state.loading = false
+          state.error = action.payload || 'Ошибка авторизации'
+        },
+      )
+  },
+})
+
+export const { clearAuthError } = authSlice.actions
+export default authSlice.reducer

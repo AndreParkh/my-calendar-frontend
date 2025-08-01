@@ -1,14 +1,20 @@
-import './components/App/App.css'
-import ReactDom from "react-dom/client";
-import {StrictMode} from "react";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import { routes } from "./routes.tsx";
+import './index.css'
+import ReactDom from 'react-dom/client'
+import { StrictMode } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { routes } from './routes.tsx'
+import '@/i18n/i18n.ts'
+import { Provider } from 'react-redux'
+import { makeStore } from '@/store/store.ts'
 
 const router = createBrowserRouter(routes)
+const store = makeStore(window.__INITIAL_STATE__)
 
 ReactDom.hydrateRoot(
-    document.getElementById("root") as HTMLElement,
-    <StrictMode>
-        <RouterProvider router={router} />
-    </StrictMode>
-);
+  document.getElementById('root') as HTMLElement,
+  <StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </StrictMode>,
+)
