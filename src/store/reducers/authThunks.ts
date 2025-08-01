@@ -22,7 +22,6 @@ export const login = createAsyncThunk<
       },
     )
     const token = response.data.token
-    console.log('loginThunk. token: ', token)
     Cookies.set(AUTH_TOKEN, token)
     navigate(-1)
     return token
