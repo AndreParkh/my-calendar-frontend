@@ -15,8 +15,8 @@ export const ErrorSpan = ({ message, clearError }: ErrorSpanProps) => {
   }
 
   return (
-    <div className={ styles.wrapper }>
-      <span className={ styles.message }>{message}</span>
+    <div className={styles.wrapper}>
+      <span className={styles.message}>{message}</span>
     </div>
   )
 }
