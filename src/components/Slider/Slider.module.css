@@ -4,7 +4,7 @@
   gap: 1rem;
 }
 
-.fakeImage {
+.fake-image {
   height: 380px;
   width: 750px;
   background-color: var(--placeholder-color);
@@ -24,6 +24,6 @@
   border-radius: 50%;
 }
 
-.dot__active {
+.dot-active {
   background-color: var(--primary-color);
 }

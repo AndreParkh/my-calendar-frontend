@@ -6,7 +6,7 @@ export const Slider = () => {
     <div className={styles.slider}>
       <div className={styles.fakeImage}></div>
       <div className={styles.dots}>
-        <div className={cn(styles.dot, styles.dot__active)}></div>
+        <div className={cn(styles.dot, styles.dotActive)}></div>
         <div className={styles.dot}></div>
         <div className={styles.dot}></div>
       </div>

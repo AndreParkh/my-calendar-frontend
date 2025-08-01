@@ -1,4 +1,4 @@
-@import '../node_modules/reset-css/reset.css';
+@import url('../node_modules/reset-css/reset.css');
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -6,24 +6,21 @@
   font-weight: 400;
   font-size: 16px;
   height: 100%;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgb(255 255 255 / 87%);
   background-color: #242424;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: hsla(204, 53%, 49%, 1);
-  --secondary-color: hsla(210, 14%, 97%, 1);
-  --placeholder-color: hsla(0, 0%, 85%, 1);
-  --divider-color: hsla(0, 0%, 73%, 1);
-  --gray: hsla(0, 0%, 85%, 1);
+  --primary-color: hsl(204deg 53% 49% / 100%);
+  --secondary-color: hsl(210deg 14% 97% / 100%);
+  --placeholder-color: hsl(0deg 0% 85% / 100%);
+  --divider-color: hsl(0deg 0% 73% / 100%);
+  --gray: hsl(0deg 0% 85% / 100%);
   --border-radius: 10px;
-
-  --hover-primary-color: hsla(204, 53%, 49%, 0.8);
+  --hover-primary-color: hsl(204deg 53% 49% / 80%);
 }
 
 #root {
@@ -41,6 +38,6 @@ body {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #fff;
   }
 }
