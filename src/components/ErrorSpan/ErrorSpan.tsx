@@ -1,7 +1,6 @@
 import styles from './ErrorSpan.module.css'
 import { useAppDispatch } from '@/store/hooks.ts'
 import { ActionCreatorWithoutPayload } from '@reduxjs/toolkit'
-import cn from 'classnames'
 
 interface ErrorSpanProps {
   message?: string
@@ -16,8 +15,8 @@ export const ErrorSpan = ({ message, clearError }: ErrorSpanProps) => {
   }
 
   return (
-    <div className={cn(styles.wrapper, { [styles.wrapperShow]: message })}>
-      <span className={cn(styles.message)}>{message}</span>
+    <div className={ styles.wrapper }>
+      <span className={ styles.message }>{message}</span>
     </div>
   )
 }
