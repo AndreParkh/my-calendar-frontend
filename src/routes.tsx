@@ -10,9 +10,6 @@ import {
   User,
 } from '@/components'
 
-export const protectedRoutes = ['/app/*']
-export const redirectRoutes = ['/auth/login', '/auth/register']
-
 export const routesPaths = {
   root: '/',
   auth: {
