@@ -12,6 +12,20 @@ import {
   redirectNonAuthLoader,
 } from '@/components'
 
+export const protectedRoutes = ['/app/*']
+export const redirectRoutes = ['/auth/login', '/auth/register']
+
+export const routesPaths = {
+  root: '/',
+  auth: {
+    login: '/auth/login',
+    register: '/auth/register',
+  },
+  app: {
+    user: '/app/user',
+  },
+}
+
 export const routes: RouteObject[] = [
   {
     path: '/',

@@ -1,16 +1,13 @@
-import { redirect } from 'react-router'
 import { AUTH_TOKEN } from '@/constants/constants.ts'
-import { parseCookies } from '@/utils/parseCookies.ts'
 import { LoaderFunctionArgs } from 'react-router-dom'
+import { getCookie } from '@/utils/getCookie.ts'
 
 export const redirectAuthLoader = (args: LoaderFunctionArgs) => {
-  const cookies = parseCookies(args.request.headers.get('cookie'))
-  const token = cookies[AUTH_TOKEN]
-  if (token) {
-    const searchUrl = new URL(args.request.url).search
-    const searchParams = new URLSearchParams(searchUrl)
-    const redirectTo = searchParams.get('redirect') || '/app'
-    return redirect(redirectTo)
-  }
-  return null
+  const searchUrl = new URL(args.request.url).search
+  const searchParams = new URLSearchParams(searchUrl)
+  const redirectTo = searchParams.get('redirect') || '/app'
+
+  const token = getCookie(AUTH_TOKEN, args.request)
+
+  return { token, redirectTo }
 }
