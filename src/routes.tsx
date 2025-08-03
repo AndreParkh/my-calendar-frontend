@@ -8,8 +8,6 @@ import {
   ProtectedLayout,
   Register,
   User,
-  redirectAuthLoader,
-  redirectNonAuthLoader,
 } from '@/components'
 
 export const protectedRoutes = ['/app/*']
@@ -34,7 +32,6 @@ export const routes: RouteObject[] = [
       {
         path: 'auth',
         element: <AuthLayout />,
-        loader: redirectAuthLoader,
         children: [
           { path: 'login', element: <Login /> },
           { path: 'register', element: <Register /> },
@@ -43,7 +40,6 @@ export const routes: RouteObject[] = [
       {
         path: 'app',
         element: <ProtectedLayout />,
-        loader: redirectNonAuthLoader,
         children: [
           {
             path: 'user',

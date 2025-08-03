@@ -1,4 +1,5 @@
 import type * as express from 'express'
+import { setTokenToStore } from '@/utils/setTokenToStore.ts'
 
 export const createFetchRequest = (
   request: express.Request,
@@ -16,6 +17,8 @@ export const createFetchRequest = (
     headers,
     signal: controller.signal,
   }
+
+  setTokenToStore(request)
 
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     init.body = request.body

@@ -35,11 +35,9 @@ const sendStreamedResponse = async (
   store,
 ) => {
   const [htmlStart, htmlEnd] = template.split('<div id="root"></div>')
-
   const { context, router } = await getContext(req, res)
 
   const initialState = store.getState()
-
   const { pipe, abort } = renderFn(context, router, {
     onShellError() {
       res.status(500)
@@ -49,7 +47,6 @@ const sendStreamedResponse = async (
     onShellReady() {
       res.status(200)
       res.set({ 'Content-Type': 'text/html' })
-
       const transformStream = new Transform({
         transform(chunk, encoding, callback) {
           res.write(chunk, encoding)
@@ -100,7 +97,6 @@ const handleRequestProd = async (req, res) => {
     const { render, getContext, store } = await import(
       './dist/server/entry.server.js'
     )
-
     await sendStreamedResponse(req, res, render, getContext, template, store)
   } catch (e) {
     console.error(e.stack)
