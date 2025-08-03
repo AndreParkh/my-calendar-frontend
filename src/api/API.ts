@@ -5,14 +5,11 @@ const backend = import.meta.env.VITE_API_DOMAIN
 
 export const API = {
   auth: {
-    login: (credentials: ILogin) => axios.post<LoginResponse>(
-      `${backend}/auth/login`,
-      credentials,
-      {
+    login: (credentials: ILogin) =>
+      axios.post<LoginResponse>(`${backend}/auth/login`, credentials, {
         headers: {
           'Content-Type': 'application/json',
         },
-      },
-    )
-  }
+      }),
+  },
 }
