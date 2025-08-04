@@ -6,7 +6,7 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.icon}></div>
+      <img className={styles.icon} alt={'alt'}></img>
       <h1 className={styles.name}>{t('top.title')}</h1>
     </header>
   )

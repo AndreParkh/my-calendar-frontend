@@ -6,7 +6,7 @@ import { redirect } from 'react-router'
 import { API } from '@/api/API.ts'
 
 export const login = createAsyncThunk<
-  Response,
+  string,
   ILogin,
   { rejectValue: string }
 >('auth/login', async (credentials, thunkAPI) => {
@@ -14,7 +14,8 @@ export const login = createAsyncThunk<
     const response = await API.auth.login(credentials)
     const token = response.data.token
     Cookies.set(AUTH_TOKEN, token)
-    return redirect('/app/user')
+    redirect('/app/user')
+    return token
   } catch {
     return thunkAPI.rejectWithValue('Неуспешная авторизация')
   }

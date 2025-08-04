@@ -29,10 +29,11 @@ export const Login = () => {
       clearErrors()
       dispatch(login(credentials))
     } catch (e) {
+      // TODO: добавить ошибку через нотификации - Issue 15
       if (e instanceof Error) {
         console.error(e.message)
       } else {
-        console.error('Необработанная ошибка')
+        console.error(t('form.errors.unhandled'))
       }
     }
   }
@@ -50,11 +51,11 @@ export const Login = () => {
             {...register('email', {
               required: {
                 value: true,
-                message: t('form.email.required.message'),
+                message: t('form.errors.email.required'),
               },
               pattern: {
                 value: emailPattern,
-                message: t('form.email.pattern.message'),
+                message: t('form.errors.email.pattern'),
               },
             })}
           />
@@ -69,11 +70,11 @@ export const Login = () => {
             {...register('password', {
               required: {
                 value: true,
-                message: t('form.password.required.message'),
+                message: t('form.errors.password.required'),
               },
               minLength: {
                 value: 6,
-                message: t('form.password.length.message'),
+                message: t('form.errors.password.length'),
               },
             })}
           />
