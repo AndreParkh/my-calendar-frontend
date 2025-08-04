@@ -18,13 +18,13 @@ export const login = {
     errors: {
       email: {
         required: 'Обязательно поле',
-        pattern: 'Некоорентный email'
+        pattern: 'Некоорентный email',
       },
       password: {
         required: 'Обязательно поле',
-        length: 'Минимальная длинна 6 символов'
+        length: 'Минимальная длинна 6 символов',
       },
-      unhandled: 'Необработанная ошибка'
-    }
+      unhandled: 'Необработанная ошибка',
+    },
   },
 }
