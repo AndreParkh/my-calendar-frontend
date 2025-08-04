@@ -4,6 +4,11 @@ export interface AuthState {
   error: string
 }
 
+export interface SliderState {
+  sliderNumber: number
+  slidesCount: number
+}
+
 export interface LoginResponse {
   token: string
 }

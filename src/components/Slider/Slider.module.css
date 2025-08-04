@@ -1,29 +1,7 @@
 .slider {
   display: flex;
+  position: relative;
   flex-direction: column;
+  overflow: hidden;
   gap: 1rem;
-}
-
-.fake-image {
-  height: 380px;
-  width: 750px;
-  background-color: var(--placeholder-color);
-  border-radius: var(--border-radius);
-}
-
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.dot {
-  background-color: var(--gray);
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-}
-
-.dot-active {
-  background-color: var(--primary-color);
 }

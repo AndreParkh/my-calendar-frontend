@@ -20,7 +20,7 @@
     "noUncheckedSideEffectImports": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@locales/*": ["./locales/*"]
+      "@locales/*": ["./public/locales/*"]
     }
   },
   "include": ["src"],

@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import authReducer from '@/store/reducers/authSlice.ts'
+import sliderReducer from '@/store/reducers/sliderSlice.ts'
 
 const rootReducer = combineReducers({
   authReducer,
+  sliderReducer,
 })
 
 export type RootStore = ReturnType<typeof rootReducer>

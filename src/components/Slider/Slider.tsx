@@ -1,15 +1,12 @@
 import styles from './Slider.module.css'
-import cn from 'classnames'
+import { SliderList } from '@/components/Slider/SliderList/SliderList.tsx'
+import { Dots } from '@/components/Slider/Dots/Dots.tsx'
 
 export const Slider = () => {
   return (
     <div className={styles.slider}>
-      <img className={styles.fakeImage} alt={'img'}></img>
-      <div className={styles.dots}>
-        <div className={cn(styles.dot, styles.dotActive)}></div>
-        <div className={styles.dot}></div>
-        <div className={styles.dot}></div>
-      </div>
+      <SliderList />
+      <Dots />
     </div>
   )
 }
