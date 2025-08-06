@@ -5,15 +5,12 @@ import { Dot } from '@/components/Slider/Dot/Dot.tsx'
 
 export const Dots = () => {
   const slidesCount = useAppSelector(selectSlideCount)
+  const dots = new Array(slidesCount)
 
-  const renderDots = () => {
-    const dots = []
-
-    for (let i = 0; i < slidesCount; i++) {
-      dots.push(<Dot key={`dot-${i}`} number={i} />)
-    }
-    return dots
-  }
-
-  return <div className={styles.dots}>{renderDots()}</div>
+  return (
+    <div className={styles.dots}>
+      {[...dots].map((_, idx) =>
+        <Dot key={`dot-${idx}`} number={idx} />
+      )}
+    </div>)
 }
