@@ -1,13 +1,13 @@
 import { RouteObject } from 'react-router-dom'
 import {
   App,
-  AuthLayout,
   CatchAll,
   UserError,
   Login,
-  ProtectedLayout,
+  ProtectedRoute,
   Register,
   User,
+  AuthLayout,
 } from '@/components'
 
 export const routesPaths = {
@@ -28,22 +28,24 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: 'auth',
-        element: <AuthLayout />,
+        element: (
+          <ProtectedRoute redirectAuthPath={'/user'}>
+            <AuthLayout />
+          </ProtectedRoute>
+        ),
         children: [
           { path: 'login', element: <Login /> },
           { path: 'register', element: <Register /> },
         ],
       },
       {
-        path: 'app',
-        element: <ProtectedLayout />,
-        children: [
-          {
-            path: 'user',
-            element: <User />,
-            errorElement: <UserError />,
-          },
-        ],
+        path: 'user',
+        element: (
+          <ProtectedRoute redirectNonAuthPath={'/auth/login'}>
+            <User />
+          </ProtectedRoute>
+        ),
+        errorElement: <UserError />,
       },
     ],
   },
