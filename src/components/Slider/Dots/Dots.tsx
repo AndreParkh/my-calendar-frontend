@@ -9,8 +9,9 @@ export const Dots = () => {
 
   return (
     <div className={styles.dots}>
-      {[...dots].map((_, idx) =>
+      {[...dots].map((_, idx) => (
         <Dot key={`dot-${idx}`} number={idx} />
-      )}
-    </div>)
+      ))}
+    </div>
+  )
 }
