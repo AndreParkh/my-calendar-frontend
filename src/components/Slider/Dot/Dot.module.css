@@ -1,0 +1,11 @@
+.item {
+  background-color: var(--gray);
+  height: .625rem;
+  width: .625rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: var(--primary-color);
+}

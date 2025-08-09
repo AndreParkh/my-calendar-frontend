@@ -17,10 +17,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@locales/*": ["./public/locales/*"]
+    }
   },
   "include": ["src"],
-  "references": [
-    { "path": "./tsconfig.node.json" }
-  ]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
