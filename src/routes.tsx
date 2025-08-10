@@ -1,26 +1,56 @@
-import {RouteObject} from "react-router-dom";
-import Layout from "./components/Loyout/Layout.tsx";
-import Register from "./components/Register/Register.tsx";
-import Login from "./components/Login/Login.tsx";
-import App from "./components/App/App.tsx";
-import Catchall from "./components/Catchall.tsx";
-import Error from "./components/App/Error.tsx";
+import { RouteObject } from 'react-router-dom'
+import {
+  App,
+  CatchAll,
+  UserError,
+  Login,
+  ProtectedRoute,
+  Register,
+  User,
+  AuthLayout,
+} from '@/components'
 
-const routes: RouteObject[] = [
-    {
-        path: '/',
-        Component: Layout,
+export const routesPaths = {
+  root: '/',
+  auth: {
+    login: '/auth/login',
+    register: '/auth/register',
+  },
+  app: {
+    user: '/user',
+  },
+}
+
+export const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: 'auth',
+        element: (
+          <ProtectedRoute redirectAuthPath={routesPaths.app.user}>
+            <AuthLayout />
+          </ProtectedRoute>
+        ),
         children: [
-            { index: true, element: <h1>Home</h1> },
-            { path: 'register', Component: Register },
-            { path: 'login', Component: Login },
-            { path: 'app', Component: App, errorElement: <Error /> }
-        ]
-    },
-    {
-        path: "*?",
-        Component: Catchall,
-    }
+          { path: 'login', element: <Login /> },
+          { path: 'register', element: <Register /> },
+        ],
+      },
+      {
+        path: 'user',
+        element: (
+          <ProtectedRoute redirectNonAuthPath={routesPaths.auth.login}>
+            <User />
+          </ProtectedRoute>
+        ),
+        errorElement: <UserError />,
+      },
+    ],
+  },
+  {
+    path: '*?',
+    Component: CatchAll,
+  },
 ]
-
-export { routes }

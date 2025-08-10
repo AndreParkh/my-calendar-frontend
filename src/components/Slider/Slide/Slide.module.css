@@ -1,0 +1,8 @@
+.slide {
+  flex: 1 0 100%;
+  height: 23rem;
+  width: 15rem;
+  object-fit: contain;
+  background-color: var(--placeholder-color);
+  border-radius: var(--border-radius);
+}

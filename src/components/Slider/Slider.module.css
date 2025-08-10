@@ -1,0 +1,7 @@
+.slider {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+  gap: 1rem;
+}
