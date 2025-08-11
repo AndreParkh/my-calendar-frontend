@@ -18,3 +18,12 @@
   width: 100%;
   text-align: start;
 }
+
+.ref {
+  color: var(--font-color);
+  text-decoration: none;
+}
+
+.ref:hover {
+  text-decoration: underline;
+}
