@@ -5,12 +5,11 @@ import { useForm } from 'react-hook-form'
 import { Button, ErrorSpan, Input } from '@/components'
 import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
-import { login } from '@/store/reducers/authThunks.ts'
+import { login } from '@/store/thunks/loginThunk.ts'
 import { clearAuthError } from '@/store/reducers/authSlice.ts'
 import { selectAuthError, selectAuthLoading } from '@/store/selectors.ts'
 import { ILogin } from '@/store/types.ts'
-
-const emailPattern = RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
+import { EMAIL_PATTERN, MIN_PASSWORD_LENGTH } from '@/constants/constants.ts'
 
 export const Login = () => {
   const {
@@ -54,7 +53,7 @@ export const Login = () => {
                 message: t('form.errors.email.required'),
               },
               pattern: {
-                value: emailPattern,
+                value: EMAIL_PATTERN,
                 message: t('form.errors.email.pattern'),
               },
             })}
@@ -73,7 +72,7 @@ export const Login = () => {
                 message: t('form.errors.password.required'),
               },
               minLength: {
-                value: 6,
+                value: MIN_PASSWORD_LENGTH,
                 message: t('form.errors.password.length'),
               },
             })}
