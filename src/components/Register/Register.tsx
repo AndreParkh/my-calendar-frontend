@@ -38,7 +38,7 @@ export const Register = () => {
   }
 
   return (
-    <div className={styles.Register}>
+    <div className={styles.register}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.label}>
           {t('form.firstName.label')}
