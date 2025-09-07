@@ -17,5 +17,8 @@ export const API = {
           'Content-Type': 'application/json',
         },
       }),
+    redirectYandexOAuthUrl: () => {
+      return `${backend}/auth/yandex`
+    },
   },
 }

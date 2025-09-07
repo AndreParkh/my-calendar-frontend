@@ -27,3 +27,12 @@
 .ref:hover {
   text-decoration: underline;
 }
+
+.yandexButton {
+  background-color: hsla(240, 11%, 18%, 100%);
+  width: 100%;
+}
+
+.yandexButton:hover {
+  background-color: hsla(240, 21%, 18%, 90%);
+}

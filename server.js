@@ -3,7 +3,7 @@ import express from 'express'
 import { Transform } from 'node:stream'
 import serialize from 'serialize-javascript'
 
-const port = process.env.PORT || 5003
+const port = process.env.VITE_PORT || 5003
 const base = process.env.BASE || '/'
 const ABORT_DELAY = 10_000
 
@@ -22,7 +22,7 @@ const setupProdMiddlewares = async (app) => {
   const compression = (await import('compression')).default
   const sirv = (await import('sirv')).default
   app.use(compression())
-  app.use(base, sirv('./dist/client', { extensions: [] }))
+  app.use(sirv('./dist/client', { extensions: [] }))
   return null
 }
 
@@ -117,7 +117,7 @@ const startServer = async () => {
   }
 
   app.listen(port, '0.0.0.0', () => {
-    console.log(`Server started at http://localhost:${port}`)
+    console.log(`Server started at PORT=${port}`)
   })
 }
 

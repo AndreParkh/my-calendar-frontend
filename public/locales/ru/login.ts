@@ -8,6 +8,9 @@ export const login = {
       label: 'Пароль',
       placeholder: 'Введите пароль',
     },
+    yandex: {
+      text: 'Войти с помощью Яндекс ID',
+    },
     button: {
       text: 'Войти',
       loading: 'Выполняется вход...',
