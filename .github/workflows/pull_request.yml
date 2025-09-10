@@ -27,3 +27,4 @@ jobs:
       # Шаг 4: Сборка проекта
       - name: build project
         run: npm run build
+
