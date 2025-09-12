@@ -102,19 +102,43 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-calendar-frontend-pr:latest
 
-  # Job 4:
-  deploy-pr:
-    runs-on: ubuntu-22.04
+  # Job
+  trigger-deploy:
+    needs: publish-docker-image
+    runs-on: ubuntu-latest
 
     steps:
-      - name: install SSH keyч
-        uses: webfactory/ssh-agent@v0.9.1
+      - name: Trigger deploy event in my-calendar-docker-compose
+        id: trigger-deploy
+        uses: peter-evans/repository-dispatch@v3
         with:
-          ssh-private-key: ${{ secrets.VPS_PRIVATE_KEY }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repository: andreparkh/my-calendar-docker-compose
+          event-type: deploy-test
+          client-payload: '{"message": "Deploy triggered from my-calendar-frontend"}'
 
-      - name: Deploy Docker Compose on VPS
+      - name: Wait for Docker Job to Complete
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} <<EOF
-          cd /home/${{ secrets.VPS_USERNAME }}/test/my-calendar-frontend || true
-          sudo docker rmi ${{ secrets.DOCKER_HUB_USERNAME }}/my-calendar-frontend-pr
-          docker run -p 5010:5003 --name pull-request ${{ secrets.DOCKER_HUB_USERNAME }}/my-calendar-frontend-pr
+          sleep 10
+          REPO_PATH=https:/api.github.com/repos/andreparkh/my-calendar-docker-compose
+          WORKFLOW_RUN_ID=$(curl -s -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+            $REPO_PATH/actions/runs | jq -r '.workflow_runs[0].id')
+          echo "WORKFLOW_RUN_ID = $WORKFLOW_RUN_ID"
+          while true; do
+            STATUS=$(curl -s -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+              $REPO_PATH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.status')
+            echo "STATUS: $STATUS"
+            if [ "STATUS" == "completed" ]; then
+              CONCLUSION=$(curl -s -H "Autorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+                $REPO_PARH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.conclusion')
+              if [ "CONCLUSION" == "success" ]; then
+                echo "Deploy completed successfully!"
+                exxit 0
+              else 
+                echo "Deploy failed!"
+                exit 1
+              fi
+            fi
+            echo "Waiting for Docker job to complete..."
+            sleep 10
+          done
