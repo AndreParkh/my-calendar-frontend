@@ -1,0 +1,10 @@
+.wrapper {
+  height: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.message {
+  font-size: .75rem;
+  color: red;
+}
