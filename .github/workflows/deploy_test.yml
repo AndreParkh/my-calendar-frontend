@@ -129,12 +129,12 @@ jobs:
               $REPO_PATH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.status')
             echo "STATUS: $STATUS"
             if [ "$STATUS" == "completed" ]; then
-              CONCLUSION=$(curl -s -H "Autorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
-                $REPO_PARH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.conclusion')
+              CONCLUSION=$(curl -s -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+                $REPO_PATH/actions/runs/$WORKFLOW_RUN_ID | jq -r '.conclusion')
               if [ "$CONCLUSION" == "success" ]; then
                 echo "Deploy completed successfully!"
                 exit 0
-              else 
+              else
                 echo "Deploy failed!"
                 exit 1
               fi
