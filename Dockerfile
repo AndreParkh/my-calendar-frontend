@@ -17,6 +17,7 @@ ARG API_DOMAIN
 
 # Устанавливаем переменные окружения
 ENV VITE_API_DOMAIN=$API_DOMAIN
+ENV VITE_PORT=8080
 
 # Копируем оставшиеся файлы проекта в рабочую директорию контейнера
 COPY . .
@@ -24,5 +25,4 @@ COPY . .
 # Выполняем сборку проекта
 RUN npm run build
 
-EXPOSE 5003
 CMD ["npm", "run", "start"]
