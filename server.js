@@ -3,7 +3,7 @@ import express from 'express'
 import { Transform } from 'node:stream'
 import serialize from 'serialize-javascript'
 
-const port = process.env.VITE_PORT || 5003
+const port = process.env.VITE_PORT || 8080
 const base = process.env.BASE || '/'
 const ABORT_DELAY = 10_000
 
