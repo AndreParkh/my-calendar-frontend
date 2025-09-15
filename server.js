@@ -32,13 +32,14 @@ const sendStreamedResponse = async (
   renderFn,
   getContext,
   template,
-  store,
+  createStore,
 ) => {
+  const store = createStore()
   const [htmlStart, htmlEnd] = template.split('<div id="root"></div>')
-  const { context, router } = await getContext(req, res)
+  const { context, router } = await getContext(req, res, store)
 
   const initialState = store.getState()
-  const { pipe, abort } = renderFn(context, router, {
+  const { pipe, abort } = renderFn(context, router, store, {
     onShellError() {
       res.status(500)
       res.set({ 'Content-Type': 'text/html' })
@@ -80,11 +81,17 @@ const handleRequestDev = async (req, res, viteDevServer) => {
   try {
     const rawTemplate = await fs.readFile('./index.html', 'utf-8')
     const template = await viteDevServer.transformIndexHtml(url, rawTemplate)
-    const { render, getContext, store } = await viteDevServer.ssrLoadModule(
-      '/src/entry.server.tsx',
-    )
+    const { render, getContext, createStore } =
+      await viteDevServer.ssrLoadModule('/src/entry.server.tsx')
 
-    await sendStreamedResponse(req, res, render, getContext, template, store)
+    await sendStreamedResponse(
+      req,
+      res,
+      render,
+      getContext,
+      template,
+      createStore,
+    )
   } catch (e) {
     viteDevServer.ssrFixStacktrace(e)
     console.error(e.stack)
@@ -94,10 +101,17 @@ const handleRequestDev = async (req, res, viteDevServer) => {
 const handleRequestProd = async (req, res) => {
   try {
     const template = await fs.readFile('./dist/client/index.html', 'utf-8')
-    const { render, getContext, store } = await import(
+    const { render, getContext, createStore } = await import(
       './dist/server/entry.server.js'
     )
-    await sendStreamedResponse(req, res, render, getContext, template, store)
+    await sendStreamedResponse(
+      req,
+      res,
+      render,
+      getContext,
+      template,
+      createStore,
+    )
   } catch (e) {
     console.error(e.stack)
     res.status(500).end(e.stack)

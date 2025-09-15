@@ -9,12 +9,12 @@ const rootReducer = combineReducers({
 
 export type RootStore = ReturnType<typeof rootReducer>
 
-export const makeStore = (preloadedState?: RootStore) => {
+export const createStore = (preloadedState?: RootStore) => {
   return configureStore({
     reducer: rootReducer,
     preloadedState,
   })
 }
 
-export type AppStore = ReturnType<typeof makeStore>
+export type AppStore = ReturnType<typeof createStore>
 export type AppDispatch = AppStore['dispatch']

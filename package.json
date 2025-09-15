@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node server",
+    "dev": "cross-env VITE_API_DOMAIN=http://localhost:3000/api node server",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,html}\"",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:css": "stylelint \"**/*.{css,scss,sass,less}\"",

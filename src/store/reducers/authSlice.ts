@@ -15,6 +15,9 @@ const authSlice = createSlice({
     setToken: (state, action: PayloadAction<typeof initialState.token>) => {
       state.token = action.payload
     },
+    clearToken: (state) => {
+      state.token = null
+    },
     clearAuthError: (state) => {
       state.error = ''
     },
@@ -40,5 +43,5 @@ const authSlice = createSlice({
   },
 })
 
-export const { clearAuthError, setToken } = authSlice.actions
+export const { clearAuthError, setToken, clearToken } = authSlice.actions
 export default authSlice.reducer

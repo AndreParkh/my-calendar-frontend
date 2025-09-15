@@ -1,8 +1,7 @@
-const emptyCookies: Record<string, string> = {}
-
 export const parseCookies = (
   cookiesString: string | undefined | null,
 ): Record<string, string> => {
+  const emptyCookies: Record<string, string> = {}
   if (!cookiesString) return emptyCookies
 
   return cookiesString.split(';').reduce((acc, cookie) => {
