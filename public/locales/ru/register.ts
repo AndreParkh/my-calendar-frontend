@@ -16,6 +16,10 @@ export const register = {
       label: 'Пароль',
       placeholder: 'Придумайте пароль',
     },
+    confirmPassword: {
+      label: 'Повторите пароль',
+      placeholder: 'Повторите пароль',
+    },
     button: {
       text: 'Зарегистрироваться',
       loading: 'Выполняется регистрация...',
@@ -37,6 +41,7 @@ export const register = {
       password: {
         required: 'Обязательно поле',
         length: 'Минимальная длинна 6 символов',
+        mismatch: 'Пароли не совпадают',
       },
       unhandled: 'Необработанная ошибка',
     },

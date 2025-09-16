@@ -17,3 +17,9 @@
   font-size: 2rem;
   font-weight: bold;
 }
+
+.auth-button {
+  font-weight: bold;
+  border: 1px solid white;
+  margin-left: auto;
+}
