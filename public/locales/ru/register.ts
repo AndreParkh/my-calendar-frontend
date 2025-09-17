@@ -36,7 +36,7 @@ export const register = {
       },
       email: {
         required: 'Обязательно поле',
-        pattern: 'Некоорентный email',
+        pattern: 'Некорректный email',
       },
       password: {
         required: 'Обязательно поле',
