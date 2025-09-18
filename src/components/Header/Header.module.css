@@ -3,7 +3,7 @@
   padding: 1rem;
   gap: .75rem;
   align-items: center;
-  color: white;
+  color: var(--secondary-font-color);
   background-color: var(--primary-color);
 }
 
@@ -20,6 +20,6 @@
 
 .auth-button {
   font-weight: bold;
-  border: 1px solid white;
+  border: 1px solid var(--border-radius-color);
   margin-left: auto;
 }

@@ -32,7 +32,7 @@ export const Register = () => {
       }
       dispatch(registerThunk(registerData))
     } catch (e) {
-      // TODO: добавить ошибку через нотификации - Issue 15
+      // TODO: добавить ошибку через нотификации - https://github.com/AndreParkh/my-calendar-frontend/issues/15
       if (e instanceof Error) {
         console.error(e.message)
       } else {

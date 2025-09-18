@@ -20,7 +20,7 @@
 }
 
 .ref {
-  color: var(--font-color);
+  color: var(--primary-font-color);
   text-decoration: none;
 }
 
@@ -29,10 +29,10 @@
 }
 
 .yandexButton {
-  background-color: hsla(240, 11%, 18%, 100%);
+  background-color: var(--yandex-button-color);
   width: 100%;
 }
 
 .yandexButton:hover {
-  background-color: hsla(240, 21%, 18%, 90%);
+  background-color: var(--hover-yandex-button-color);
 }

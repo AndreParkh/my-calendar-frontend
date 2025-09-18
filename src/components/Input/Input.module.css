@@ -17,12 +17,12 @@
 }
 
 .error {
-  border-color: red;
+  border-color: var(--error-text-coror);
 }
 
 .error-message {
   position: absolute;
-  color: red;
+  color: var(--error-text-coror);
   font-size: .75rem;
   padding-left: 1.25rem;
 }
