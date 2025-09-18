@@ -12,11 +12,16 @@ COPY  package*.json ./
 # Устанавиливаем зависимости, указанные в package.json
 RUN npm install
 
+# Определяем аргументы сборки
+ARG API_DOMAIN
+
+# Устанавливаем переменные окружения
+ENV VITE_API_DOMAIN=$API_DOMAIN
+
 # Копируем оставшиеся файлы проекта в рабочую директорию контейнера
 COPY . .
 
 # Выполняем сборку проекта
 RUN npm run build
 
-EXPOSE 5003
 CMD ["npm", "run", "start"]

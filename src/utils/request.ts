@@ -1,9 +1,11 @@
 import type * as express from 'express'
 import { setTokenToStore } from '@/utils/setTokenToStore.ts'
+import { AppStore } from '@/store/store.ts'
 
 export const createFetchRequest = (
   request: express.Request,
   response: express.Response,
+  store: AppStore,
 ) => {
   const origin = `${request.protocol}://${request.get('host')}`
   const url = new URL(request.originalUrl || request.url, origin)
@@ -18,7 +20,7 @@ export const createFetchRequest = (
     signal: controller.signal,
   }
 
-  setTokenToStore(request)
+  setTokenToStore(request, store)
 
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     init.body = request.body

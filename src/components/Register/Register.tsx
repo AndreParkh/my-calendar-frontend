@@ -6,7 +6,7 @@ import { IRegister } from '@/store/types.ts'
 import { useTranslation } from 'react-i18next'
 import { Button, ErrorSpan, Input } from '@/components'
 import { registerThunk } from '@/store/thunks/registerThunk.ts'
-import { clearAuthError } from '@/store/reducers/authSlice.ts'
+import { clearAuthError, setAuthError } from '@/store/reducers/authSlice.ts'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
 import { selectAuthError, selectAuthLoading } from '@/store/selectors.ts'
 import { EMAIL_PATTERN, MIN_PASSWORD_LENGTH } from '@/constants/constants.ts'
@@ -26,9 +26,13 @@ export const Register = () => {
   const onSubmit = (registerData: IRegister) => {
     try {
       clearErrors()
+      if (registerData.password != registerData.confirmPassword) {
+        dispatch(setAuthError(t('form.errors.password.mismatch')))
+        return
+      }
       dispatch(registerThunk(registerData))
     } catch (e) {
-      // TODO: добавить ошибку через нотификации - Issue 15
+      // TODO: добавить ошибку через нотификации - https://github.com/AndreParkh/my-calendar-frontend/issues/15
       if (e instanceof Error) {
         console.error(e.message)
       } else {
@@ -100,6 +104,25 @@ export const Register = () => {
               required: {
                 value: true,
                 message: t('form.errors.password.required'),
+              },
+              minLength: {
+                value: MIN_PASSWORD_LENGTH,
+                message: t('form.errors.password.length'),
+              },
+            })}
+          />
+        </label>
+        <label className={styles.label}>
+          {t('form.confirmPassword.label')}
+          <Input
+            className={styles.input}
+            type="password"
+            placeholder={t('form.confirmPassword.placeholder')}
+            error={errors.password}
+            {...register('confirmPassword', {
+              required: {
+                value: true,
+                message: t('form.errors.confirmPassword.required'),
               },
               minLength: {
                 value: MIN_PASSWORD_LENGTH,

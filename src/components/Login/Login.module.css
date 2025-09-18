@@ -20,10 +20,19 @@
 }
 
 .ref {
-  color: var(--font-color);
+  color: var(--primary-font-color);
   text-decoration: none;
 }
 
 .ref:hover {
   text-decoration: underline;
+}
+
+.yandexButton {
+  background-color: var(--yandex-button-color);
+  width: 100%;
+}
+
+.yandexButton:hover {
+  background-color: var(--hover-yandex-button-color);
 }

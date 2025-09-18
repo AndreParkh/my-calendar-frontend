@@ -7,9 +7,14 @@
   --divider-color: hsl(0deg 0% 73% / 100%);
   --gray: hsl(0deg 0% 85% / 100%);
   --border-radius: .625rem;
-  --hover-primary-color: hsl(204deg 53% 49% / 80%);
-  --font-color: hsla(0deg 0% 100% / 87%);
-  --background-color: hsla(0 0% 14% / 100%);
+  --border-radius-color: hsl(0deg 0% 100% / 100%);
+  --hover-primary-color: hsl(204deg 53% 59% / 100%);
+  --primary-font-color: hsla(0deg 0% 100% / 87%);
+  --secondary-font-color: hsl(0deg 0% 100% / 100%);
+  --background-color: hsla(0deg 0% 14% / 100%);
+  --error-text-coror: hsl(0deg 100% 50% / 100%);
+  --yandex-button-color: hsla(240, 11%, 18%, 100%);
+  --hover-yandex-button-color: hsla(240, 11%, 28%, 100%);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -17,7 +22,7 @@
   font-size: 16px;
   height: 100%;
   color-scheme: light dark;
-  color: var(--font-color);
+  color: var(--primary-font-color);
   background-color: var(--background-color);
   font-synthesis: none;
   text-rendering: optimizelegibility;
@@ -39,7 +44,7 @@ body {
 
 @media (prefers-color-scheme: light) {
   :root {
-    --font-color: hsl(208deg 36% 20% / 100%);
+    --primary-font-color: hsl(208deg 36% 20% / 100%);
     --background-color: hsla(0deg 0% 100% / 100%);
   }
 }

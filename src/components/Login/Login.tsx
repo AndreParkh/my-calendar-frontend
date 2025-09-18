@@ -10,6 +10,7 @@ import { clearAuthError } from '@/store/reducers/authSlice.ts'
 import { selectAuthError, selectAuthLoading } from '@/store/selectors.ts'
 import { ILogin } from '@/store/types.ts'
 import { EMAIL_PATTERN, MIN_PASSWORD_LENGTH } from '@/constants/constants.ts'
+import { API } from '@/api/API.ts'
 
 export const Login = () => {
   const {
@@ -28,13 +29,17 @@ export const Login = () => {
       clearErrors()
       dispatch(login(credentials))
     } catch (e) {
-      // TODO: добавить ошибку через нотификации - Issue 15
+      // TODO: добавить ошибку через нотификации - https://github.com/AndreParkh/my-calendar-frontend/issues/15
       if (e instanceof Error) {
         console.error(e.message)
       } else {
         console.error(t('form.errors.unhandled'))
       }
     }
+  }
+
+  const onYandexClick = () => {
+    window.location.href = API.auth.redirectYandexOAuthUrl()
   }
 
   return (
@@ -83,6 +88,10 @@ export const Login = () => {
         </Button>
         <ErrorSpan message={error} clearError={clearAuthError} />
       </form>
+      <div>или</div>
+      <Button className={styles.yandexButton} onClick={onYandexClick}>
+        {t('form.yandex.text')}
+      </Button>
       <NavLink to="../register" className={styles.ref}>
         {t('form.register.text')}
       </NavLink>

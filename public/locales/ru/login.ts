@@ -8,6 +8,9 @@ export const login = {
       label: 'Пароль',
       placeholder: 'Введите пароль',
     },
+    yandex: {
+      text: 'Войти с помощью Яндекс ID',
+    },
     button: {
       text: 'Войти',
       loading: 'Выполняется вход...',
@@ -18,7 +21,7 @@ export const login = {
     errors: {
       email: {
         required: 'Обязательно поле',
-        pattern: 'Некоорентный email',
+        pattern: 'Некорректный email',
       },
       password: {
         required: 'Обязательно поле',
