@@ -1,0 +1,18 @@
+.date-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  border: 1px solid var(--cell-border-color);
+  box-sizing: border-box;
+}
+
+.week-name {
+  font-size: .875rem;
+}
+
+.week-number {
+  font-size: 1.25rem;
+  font-weight: 700;
+}

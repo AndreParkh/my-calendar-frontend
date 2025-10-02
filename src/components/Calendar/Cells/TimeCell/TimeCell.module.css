@@ -1,0 +1,9 @@
+.time-cell {
+  padding: .3rem;
+  display: flex;
+  justify-content: center;
+  min-height: 6rem;
+  font-size: 1.1rem;
+  border: 1px solid var(--cell-border-color);
+  box-sizing: border-box;
+}

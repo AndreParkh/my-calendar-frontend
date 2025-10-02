@@ -1,0 +1,23 @@
+.week-dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+}
+
+.dashboard-header {
+  display: flex;
+}
+
+.dashboard-header-column {
+  flex: 1;
+}
+
+.dashboard-header-column:first-child {
+  flex: .3;
+}
