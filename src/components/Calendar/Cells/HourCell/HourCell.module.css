@@ -1,0 +1,14 @@
+.first-half {
+  /*display: flex;*/
+  min-height: 1.5rem;
+  border: 1px solid var(--cell-border-color);
+  border-bottom: none;
+  box-sizing: border-box;
+}
+
+.second-half {
+  min-height: 1.5rem;
+  border: 1px solid var(--cell-border-color);
+  border-top: 1px dashed var(--cell-border-color);
+  box-sizing: border-box;
+}
