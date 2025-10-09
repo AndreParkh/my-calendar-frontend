@@ -1,8 +1,7 @@
 .week-dashboard {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  max-height: 100%;
+  flex-grow: 1;
 }
 
 .dashboard {

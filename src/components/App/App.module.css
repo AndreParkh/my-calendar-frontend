@@ -1,7 +1,5 @@
 .app {
-  height: 100%;
-}
-
-.outlet-wrapper {
-  height: calc(100% - 85px);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

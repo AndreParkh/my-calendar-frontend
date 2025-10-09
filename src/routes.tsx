@@ -41,9 +41,9 @@ export const routes: RouteObject[] = [
       {
         path: 'dashboard',
         element: (
-          <ProtectedRoute redirectNonAuthPath={routesPaths.auth.login}>
-            <Dashboard />
-          </ProtectedRoute>
+          // <ProtectedRoute redirectNonAuthPath={routesPaths.auth.login}>
+          <Dashboard />
+          // </ProtectedRoute>
         ),
         errorElement: <UserError />,
       },
