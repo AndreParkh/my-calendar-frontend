@@ -1,29 +1,30 @@
 @import url('../node_modules/reset-css/reset.css');
 
 :root {
-  --primary-color: hsla(204deg 53% 49% / 100%);
-  --secondary-color: hsla(210deg 14% 97% / 100%);
-  --placeholder-color: hsla(0deg 0% 85% / 100%);
-  --divider-color: hsla(0deg 0% 73% / 100%);
-  --gray: hsla(0deg 0% 85% / 100%);
-  --button-border-color: hsla(0deg 0% 100% / 100%);
-  --hover-primary-color: hsla(204deg 53% 59% / 100%);
-  --primary-font-color: hsla(0deg 0% 100% / 87%);
-  --secondary-font-color: hsla(0deg 0% 100% / 100%);
-  --background-color: hsla(0deg 0% 14% / 100%);
-  --error-text-coror: hsla(0deg 100% 50% / 100%);
+  --secondary-color: hsla(0deg 0% 89% / 100%);
+
+  --primary-font-color: hsla(0deg 0% 0% / 100%);
+  --secondary-font-color: hsla(233deg 4% 44% / 100%);
+  --contrast-font-color: hsla(0deg 0% 89% / 100%);
+
+  --primary-background-color: hsla(0deg 0% 14% / 100%);
+  --secondary-background-color: hsla(0deg 0% 96% / 100%);
+
+  --gray-background: hsla(0deg 0% 96% / 100%);
+
+  --accent-color: hsla(223deg 95% 61% / 100%);
+  --accent-hover-color: hsla(223deg 95% 55% / 100%);
+  --event-work-color: hsla(217deg 35% 90% / 100%);
+  --event-personal-color: hsla(175deg 59% 91% / 100%);
+  --event-family-color: hsla(34deg 83% 91% / 100%);
   --yandex-button-color: hsla(240deg 11% 18% / 100%);
   --hover-yandex-button-color: hsla(240 11% 28% / 100%);
-  --cell-border-color: hsla(210deg 23% 88% / 100%);
-  --cell-header-color: hsla(210deg 23% 88% / 100%);
-
-  --event-work-color: hsla(359deg 100% 82% / 100%);
-  --event-personal-color: hsla(115deg 100% 89% / 100%);
-  --event-family-color: hsla(214deg 89% 79% / 100%);
-  --event-border-color: hsla(0 0% 0% / 40%);
-  --link-color: hsl(246, 82%, 47%);
-
+  --error-text-color: hsla(0deg 100% 50% / 100%);
   --border-radius: .625rem;
+  --dark-background: hsla(0, 0%, 96%, 1);
+  --shadow-color: hsla(206deg 40% 22% / 20%);
+  --scrollbar-thumb-color: hsla(0deg 0% 0% / 30%);
+  --scrollbar-thumb-hover-color: hsla(0deg 0% 0% / 50%);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

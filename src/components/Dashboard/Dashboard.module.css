@@ -1,0 +1,13 @@
+.dashboard {
+  display: flex;
+  max-height: 100%;
+}
+
+.sidebar {
+  padding: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}

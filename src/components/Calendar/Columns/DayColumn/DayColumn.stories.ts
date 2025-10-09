@@ -9,7 +9,7 @@ export default meta
 
 type Story = StoryObj<typeof DayColumn>
 
-export const Standart: Story = {
+export const Default: Story = {
   args: {
     date: new Date(),
   },

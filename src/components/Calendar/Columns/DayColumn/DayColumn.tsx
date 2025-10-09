@@ -1,20 +1,15 @@
 import styles from './DayColumn.module.css'
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
-import { HourCell } from '@/components/Calendar/Cells/HourCell/HourCell.tsx'
 import { QTY_HOURS } from '@/constants/constants.ts'
 
-export interface DayColumnProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  date: Date
-}
+const QTY_HOUR_PARTS = 4
 
-export const DayColumn = ({ date }: DayColumnProps) => {
-  const timeList = new Array(QTY_HOURS).fill('')
+export const DayColumn = () => {
+  const timeList = new Array(QTY_HOURS * QTY_HOUR_PARTS).fill('')
 
   return (
     <div className={styles.dayColumn}>
       {timeList.map((_, index) => (
-        <HourCell key={index} />
+        <div className={styles.cell} key={index} />
       ))}
     </div>
   )

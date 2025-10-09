@@ -28,7 +28,12 @@ export const Header = () => {
     <header className={styles.header}>
       <img className={styles.icon} src={'/Logo.png'} alt={'alt'}></img>
       <h1 className={styles.name}>{t('top.title')}</h1>
-      <Button className={styles.authButton} onClick={authHandle}>
+      <Button
+        className={styles.authButton}
+        color={'blue'}
+        size={'medium'}
+        onClick={authHandle}
+      >
         {token ? t('top.button.logout') : t('top.button.login')}
       </Button>
     </header>

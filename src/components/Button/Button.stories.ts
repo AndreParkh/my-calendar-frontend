@@ -8,8 +8,35 @@ const meta: Meta<typeof Button> = {
 export default meta
 
 type Story = StoryObj<typeof Button>
-export const Primary: Story = {
+
+export const MediumBlue: Story = {
   args: {
     children: 'Кнопка',
+    color: 'blue',
+    size: 'medium',
+  },
+}
+
+export const MediumGray: Story = {
+  args: {
+    children: 'Кнопка',
+    color: 'gray',
+    size: 'medium',
+  },
+}
+
+export const MediumBlack: Story = {
+  args: {
+    children: 'Кнопка',
+    color: 'black',
+    size: 'medium',
+  },
+}
+
+export const SmallTransparent: Story = {
+  args: {
+    children: 'Кнопка',
+    color: 'transparent',
+    size: 'small',
   },
 }

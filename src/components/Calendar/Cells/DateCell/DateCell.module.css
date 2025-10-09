@@ -1,11 +1,13 @@
 .date-cell {
   display: flex;
+  padding: .75rem 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 48px;
-  border: 1px solid var(--cell-border-color);
+  border: 1px solid var(--secondary-color);
   box-sizing: border-box;
+  gap: .25rem;
+  color: var(--secondary-font-color);
 }
 
 .week-name {
@@ -15,4 +17,8 @@
 .week-number {
   font-size: 1.25rem;
   font-weight: 700;
+}
+
+.today {
+  color: var(--accent-color);
 }

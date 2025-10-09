@@ -14,7 +14,7 @@ const timeList = new Array(QTY_HOURS)
   .fill('')
   .map((_, idx) => `${('0' + idx).slice(-2)}:00`)
 
-export const Standart: Story = {
+export const Default: Story = {
   args: {
     timeList,
   },

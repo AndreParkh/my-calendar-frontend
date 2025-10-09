@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: space-around;
   padding: .25rem;
-  border: 1px solid var(--event-border-color);
   border-radius: var(--border-radius);
 }
 
@@ -19,7 +18,6 @@
 }
 
 .more-info-link {
-  color: var(--link-color);
   cursor: pointer;
 }
 

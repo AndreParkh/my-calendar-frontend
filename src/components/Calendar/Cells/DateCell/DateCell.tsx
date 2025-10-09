@@ -1,18 +1,26 @@
 import styles from './DateCell.module.css'
-import { createDate } from '@/functuions/createDate.ts'
+import { createDate } from '@/functions/createDate.ts'
+import cn from 'classnames'
 
 export interface DateCellProps {
-  date?: Date
+  date: Date
 }
 
 export const DateCell = ({ date }: DateCellProps) => {
-  const weekDayName = createDate(date).weekDayName.toUpperCase()
-  const weekDayNumber = createDate(date).dayNumber
+  const dateObj = createDate(date)
+  const weekDayName = dateObj.weekDayName.toUpperCase()
+  const weekDayNumber = dateObj.dayNumber
+
+  const today = createDate()
+  const isToday =
+    dateObj.year === today.year &&
+    dateObj.monthIndex === today.monthIndex &&
+    dateObj.dayNumber === today.dayNumber
 
   return (
-    <div className={styles.dateCell}>
-      <p className={styles.weekName}>{date && weekDayName}</p>
-      <p className={styles.weekNumber}>{date && weekDayNumber}</p>
+    <div className={cn(styles.dateCell, { [styles.today]: isToday })}>
+      <p className={styles.weekName}>{weekDayName}</p>
+      <p className={styles.weekNumber}>{weekDayNumber}</p>
     </div>
   )
 }

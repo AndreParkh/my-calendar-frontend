@@ -8,7 +8,7 @@ const meta: Meta<typeof TimeCell> = {
 export default meta
 
 type Story = StoryObj<typeof TimeCell>
-export const Standart: Story = {
+export const Default: Story = {
   args: {
     children: '1:00',
   },

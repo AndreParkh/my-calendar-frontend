@@ -9,10 +9,4 @@ export default meta
 
 type Story = StoryObj<typeof Toolbar>
 
-const now = new Date()
-
-export const Standart: Story = {
-  args: {
-    date: now,
-  },
-}
+export const Default: Story = {}

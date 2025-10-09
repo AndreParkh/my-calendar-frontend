@@ -6,3 +6,4 @@ export const EMAIL_PATTERN = RegExp(
 )
 export const LOCAL = 'default'
 export const QTY_HOURS = 24
+export const QTY_WEEK_DAYS = 7
