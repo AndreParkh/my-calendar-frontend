@@ -8,9 +8,9 @@ export const Dashboard = () => {
       <div className={styles.sidebar}>
         <CalendarWidget />
       </div>
-      {/*<div className={styles.content}>*/}
-      <WeekDashboard />
-      {/*</div>*/}
+      <div className={styles.content}>
+        <WeekDashboard />
+      </div>
     </div>
   )
 }
