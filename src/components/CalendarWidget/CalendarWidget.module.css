@@ -1,0 +1,54 @@
+.calendar-widget {
+  width: 14rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: .625rem;
+  border-radius: .625rem;
+  border: 1px solid var(--secondary-color);
+  background-color: var(--dark-background);
+  gap: .5rem;
+}
+
+.week-names {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 400;
+  font-size: .5rem;
+}
+
+.week-day-name {
+  font-weight: 600;
+}
+
+.days {
+  display: grid;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  gap: .25rem;
+  font-size: .625rem;
+  font-weight: 400;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.toolbar-widget {
+  display: flex;
+}
+
+.date {
+  margin-right: auto;
+}
+
+.arrow {
+  display: flex;
+  width: 1rem;
+}
+
+.arrow-left {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,47 @@
+.week-dashboard {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.dashboard {
+  display: flex;
+  overflow-y: hidden;
+}
+
+.dashboard:hover {
+  margin-right: -.5rem;
+  overflow-y: auto;
+}
+
+.dashboard::-webkit-scrollbar {
+  width: .5rem;
+}
+
+.dashboard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dashboard::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: .25rem;
+}
+
+.dashboard::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
+.dashboard-header {
+  display: flex;
+  -webkit-box-shadow: 0 2px 4px 0 var(--shadow-color);
+  -moz-box-shadow: 0 2px 4px 0 var(--shadow-color);
+  box-shadow: 0 2px 4px 0 var(--shadow-color);
+}
+
+.dashboard-header-column {
+  flex: 1;
+}
+
+.dashboard-header-column:first-child {
+  flex: .3;
+}

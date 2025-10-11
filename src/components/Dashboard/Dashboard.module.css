@@ -1,0 +1,14 @@
+.dashboard {
+  display: flex;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  padding: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}

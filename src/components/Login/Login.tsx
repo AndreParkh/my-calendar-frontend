@@ -83,13 +83,18 @@ export const Login = () => {
             })}
           />
         </label>
-        <Button>
+        <Button color={'blue'} size={'medium'}>
           {loading ? t('form.button.loading') : t('form.button.text')}
         </Button>
         <ErrorSpan message={error} clearError={clearAuthError} />
       </form>
       <div>или</div>
-      <Button className={styles.yandexButton} onClick={onYandexClick}>
+      <Button
+        color={'black'}
+        size={'medium'}
+        className={styles.yandexButton}
+        onClick={onYandexClick}
+      >
         {t('form.yandex.text')}
       </Button>
       <NavLink to="../register" className={styles.ref}>
