@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from 'eslint-plugin-storybook'
+
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -6,26 +9,29 @@ import tslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 import prettierConfig from 'eslint-config-prettier'
 
-export default tslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-      prettierConfig,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+export default tslint.config(
+  [
+    globalIgnores(['dist']),
+    {
+      files: ['**/*.{ts,tsx}'],
+      extends: [
+        js.configs.recommended,
+        tslint.configs.recommended,
+        reactHooks.configs['recommended-latest'],
+        reactRefresh.configs.vite,
+        prettierConfig,
+      ],
+      languageOptions: {
+        ecmaVersion: 2020,
+        globals: globals.browser,
+      },
+      rules: {
+        'no-unused-vars': 'warn',
+        '@typescript-eslint/no-unused-vars': 'warn',
+        semi: ['off'],
+        '@typescript-eslint/semi': ['off'],
+      },
     },
-    rules: {
-      'no-unused-vars': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
-      semi: ['off'],
-      '@typescript-eslint/semi': ['off'],
-    },
-  },
-])
+  ],
+  storybook.configs['flat/recommended'],
+)

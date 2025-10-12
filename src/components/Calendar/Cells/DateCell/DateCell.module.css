@@ -1,0 +1,23 @@
+.date-cell {
+  flex-grow: 1;
+  text-align: center;
+  padding: .75rem 0;
+  border: 1px solid var(--secondary-color);
+  box-sizing: border-box;
+  gap: .25rem;
+  color: var(--secondary-font-color);
+}
+
+.week-name {
+  font-size: .875rem;
+}
+
+.week-number {
+  margin-top: .25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.today {
+  color: var(--accent-color);
+}

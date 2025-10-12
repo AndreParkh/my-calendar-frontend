@@ -6,9 +6,9 @@ import {
   Login,
   ProtectedRoute,
   Register,
-  User,
   AuthLayout,
 } from '@/components'
+import { Dashboard } from '@/components/Dashboard/Dashboard.tsx'
 
 export const routesPaths = {
   root: '/',
@@ -39,11 +39,11 @@ export const routes: RouteObject[] = [
         ],
       },
       {
-        path: 'user',
+        path: 'dashboard',
         element: (
-          <ProtectedRoute redirectNonAuthPath={routesPaths.auth.login}>
-            <User />
-          </ProtectedRoute>
+          // <ProtectedRoute redirectNonAuthPath={routesPaths.auth.login}>
+          <Dashboard />
+          // </ProtectedRoute>
         ),
         errorElement: <UserError />,
       },

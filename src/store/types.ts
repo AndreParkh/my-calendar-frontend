@@ -9,6 +9,10 @@ export interface SliderState {
   slidesCount: number
 }
 
+export interface CalendarState {
+  selectedDate: string | number
+}
+
 export interface LoginResponse {
   token: string
 }

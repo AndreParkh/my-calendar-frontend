@@ -1,0 +1,30 @@
+.day {
+  box-sizing: border-box;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: .25rem;
+  color: var(--primary-font-color);
+  background-color: var(--dark-background);
+  padding: .25rem;
+  transition: all .2s ease;
+  font-size: .75rem;
+  border: none;
+}
+
+.day:hover {
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.otherMonth {
+  color: var(--secondary-font-color);
+}
+
+.today {
+  background-color: var(--accent-color);
+  color: var(--secondary-background-color);
+}
+
+.today:hover {
+  background-color: var(--accent-hover-color);
+}
