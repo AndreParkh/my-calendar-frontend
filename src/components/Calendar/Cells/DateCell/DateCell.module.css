@@ -1,9 +1,7 @@
 .date-cell {
-  display: flex;
+  flex-grow: 1;
+  text-align: center;
   padding: .75rem 0;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   border: 1px solid var(--secondary-color);
   box-sizing: border-box;
   gap: .25rem;
@@ -15,6 +13,7 @@
 }
 
 .week-number {
+  margin-top: .25rem;
   font-size: 1.25rem;
   font-weight: 700;
 }
