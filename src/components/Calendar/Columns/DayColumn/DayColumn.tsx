@@ -9,7 +9,11 @@ export const DayColumn = () => {
   return (
     <div className={styles.dayColumn}>
       {timeList.map((_, index) => (
-        <div className={styles.cell} key={index} />
+        <div
+          className={styles.cell}
+          key={index}
+          onClick={() => console.log('cell: ', 24 * index)}
+        />
       ))}
     </div>
   )

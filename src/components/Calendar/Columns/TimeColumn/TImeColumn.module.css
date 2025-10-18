@@ -1,9 +1,4 @@
 .timeColumn {
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-
-.timeColumn:first-child {
-  flex: .3;
 }
