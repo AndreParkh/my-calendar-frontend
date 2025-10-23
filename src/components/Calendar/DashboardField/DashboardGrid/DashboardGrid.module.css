@@ -1,34 +1,20 @@
 .dashboard-grid {
   display: flex;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .dashboard-grid:hover {
-  margin-right: -.5rem;
   overflow-y: auto;
 }
 
 .dashboard-grid::-webkit-scrollbar {
-  width: .5rem;
-}
-
-.dashboard-grid::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.dashboard-grid::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-color);
-  border-radius: .25rem;
-}
-
-.dashboard-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover-color);
+  width: 0;
 }
 
 .time-field-container {
   display: flex;
   flex-direction: column;
   position: relative;
-  flex-grow: 1;
+  flex: 1;
   min-height: 0;
 }

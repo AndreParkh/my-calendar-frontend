@@ -1,15 +1,20 @@
 import styles from './CalendarWidget.module.css'
 import { useState } from 'react'
-import { createDate, DateObj } from '@/functions/createDate.ts'
+import { createDate, CustomDate } from '@/functions/createDate.ts'
 import cn from 'classnames'
 import { getShownDayList } from '@/functions/getShownDayList.ts'
 import { createMonth } from '@/functions/createMonth.ts'
-import { DayItem } from '@/components/CalendarWidget/DayItem/DayItem.tsx'
+import { DayItemMemo } from '@/components/CalendarWidget/DayItem/DayItem.tsx'
 import { Button } from '@/components'
 import arrowUrl from '/arrow.svg?url'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
 import { selectSelectedDate } from '@/store/selectors.ts'
 import { setDate } from '@/store/reducers/calendarSlice.ts'
+import { NextPrev } from '@/types/types.ts'
+import { NEXT, PREV } from '@/constants/constants.ts'
+
+const LAST_MONTH_INDEX = 11
+const FIRST_MONTH_INDEX = 0
 
 export const CalendarWidget = () => {
   const dispatch = useAppDispatch()
@@ -26,25 +31,27 @@ export const CalendarWidget = () => {
 
   const shownDayList = getShownDayList(shownMonth, shownYear)
 
-  const changeMonth = (direction: 'next' | 'prev') => {
+  const changeMonth = (direction: NextPrev) => {
     const monthIndex =
-      direction === 'next'
-        ? shownMonth.monthIndex + 1
-        : shownMonth.monthIndex - 1
+      direction === NEXT ? shownMonth.monthIndex + 1 : shownMonth.monthIndex - 1
 
     if (monthIndex === -1) {
       setShownYear(shownYear - 1)
-      return setShownMonth(createMonth(new Date(shownYear - 1, 11)))
+      return setShownMonth(
+        createMonth(new Date(shownYear - 1, LAST_MONTH_INDEX)),
+      )
     }
 
-    if (monthIndex === 12) {
+    if (monthIndex === LAST_MONTH_INDEX + 1) {
       setShownYear(shownYear + 1)
-      return setShownMonth(createMonth(new Date(shownYear + 1, 0)))
+      return setShownMonth(
+        createMonth(new Date(shownYear + 1, FIRST_MONTH_INDEX)),
+      )
     }
     return setShownMonth(createMonth(new Date(shownYear, monthIndex)))
   }
 
-  const clickHandler = (dayItem: DateObj) => {
+  const clickHandler = (dayItem: CustomDate) => {
     const isOtherMonthDay = dayItem.monthIndex !== shownMonth.monthIndex
 
     if (isOtherMonthDay) {
@@ -63,22 +70,22 @@ export const CalendarWidget = () => {
               shownMonth.monthName.slice(1)}
           </span>
           <Button
-            color={'transparent'}
-            size={'small'}
-            onClick={() => changeMonth('prev')}
+            color="transparent"
+            size="small"
+            onClick={() => changeMonth(PREV)}
           >
             <img
               className={cn(styles.arrow, styles.arrowLeft)}
               src={arrowUrl}
-              alt={'prevMonth'}
+              alt="prevMonth"
             />
           </Button>
           <Button
-            color={'transparent'}
-            size={'small'}
-            onClick={() => changeMonth('next')}
+            color="transparent"
+            size="small"
+            onClick={() => changeMonth(NEXT)}
           >
-            <img className={styles.arrow} src={arrowUrl} alt={'nextMonth'} />
+            <img className={styles.arrow} src={arrowUrl} alt="nextMonth" />
           </Button>
         </div>
         <div className={styles.weekNames}>
@@ -90,7 +97,7 @@ export const CalendarWidget = () => {
         </div>
         <div className={styles.days}>
           {shownDayList.map((dayItem, idx) => (
-            <DayItem
+            <DayItemMemo
               key={idx}
               dayObj={dayItem}
               isOtherMonth={dayItem.monthIndex !== shownMonth.monthIndex}

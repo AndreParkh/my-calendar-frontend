@@ -1,24 +1,24 @@
 import styles from './DayItem.module.css'
 import cn from 'classnames'
-import { createDate, DateObj } from '@/functions/createDate.ts'
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
+import { createDate, CustomDate } from '@/functions/createDate.ts'
+import { ButtonHTMLAttributes, DetailedHTMLProps, memo, useMemo } from 'react'
 
 interface DayItemProps
   extends DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  dayObj: DateObj
+  dayObj: CustomDate
   isOtherMonth?: boolean
 }
 
-export const DayItem = ({
+const DayItem = ({
   dayObj,
   isOtherMonth = false,
   onClick,
   ...props
 }: DayItemProps) => {
-  const today = createDate()
+  const today = useMemo(() => createDate(), [])
   const isToday =
     dayObj.year === today.year &&
     dayObj.monthIndex === today.monthIndex &&
@@ -37,3 +37,5 @@ export const DayItem = ({
     </button>
   )
 }
+
+export const DayItemMemo = memo(DayItem)

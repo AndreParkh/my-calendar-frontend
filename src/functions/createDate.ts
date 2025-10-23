@@ -23,4 +23,4 @@ export const createDate = (date: Date = new Date()) => {
   }
 }
 
-export type DateObj = ReturnType<typeof createDate>
+export type CustomDate = ReturnType<typeof createDate>

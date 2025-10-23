@@ -1,12 +1,15 @@
 import styles from './DashboardField.module.css'
-import { DashboardHeader } from '@/components/Calendar/DashboardField/DashboardHeader/DashboardHeader.tsx'
-import { DashboardGrid } from '@/components/Calendar/DashboardField/DashboardGrid/DashboardGrid.tsx'
+import { DashboardHeaderMemo } from '@/components/Calendar/DashboardField/DashboardHeader/DashboardHeader.tsx'
+import { DashboardGridMemo } from '@/components/Calendar/DashboardField/DashboardGrid/DashboardGrid.tsx'
+import { memo } from 'react'
 
-export const DashboardField = () => {
+const DashboardField = () => {
   return (
     <div className={styles.dashboardField}>
-      <DashboardHeader />
-      <DashboardGrid />
+      <DashboardHeaderMemo />
+      <DashboardGridMemo />
     </div>
   )
 }
+
+export const DashboardFieldMemo = memo(DashboardField)

@@ -1,18 +1,20 @@
 import styles from './TImeColumn.module.css'
-import { TimeCell } from '@/components/Calendar/Cells/TimeCell/TimeCell.tsx'
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { TimeCellMemo } from '@/components/Calendar/Cells/TimeCell/TimeCell.tsx'
+import { DetailedHTMLProps, HTMLAttributes, memo } from 'react'
 
 export interface TimeColumnProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   timeList: string[]
 }
 
-export const TimeColumn = ({ timeList }: TimeColumnProps) => {
+const TimeColumn = ({ timeList }: TimeColumnProps) => {
   return (
     <div className={styles.timeColumn}>
       {timeList.map((time, index) => (
-        <TimeCell key={index}>{time}</TimeCell>
+        <TimeCellMemo key={index}>{time}</TimeCellMemo>
       ))}
     </div>
   )
 }
+
+export const TimeColumnMemo = memo(TimeColumn)

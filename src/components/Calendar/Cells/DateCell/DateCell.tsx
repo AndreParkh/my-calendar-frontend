@@ -1,26 +1,29 @@
 import styles from './DateCell.module.css'
 import { createDate } from '@/functions/createDate.ts'
 import cn from 'classnames'
+import { memo, useMemo } from 'react'
 
 export interface DateCellProps {
   date: Date
 }
 
-export const DateCell = ({ date }: DateCellProps) => {
-  const dateObj = createDate(date)
-  const weekDayName = dateObj.weekDayName.toUpperCase()
-  const weekDayNumber = dateObj.dayNumber
+const DateCell = ({ date }: DateCellProps) => {
+  const convertedDate = useMemo(() => createDate(date), [date])
+  const weekDayName = convertedDate.weekDayName.toUpperCase()
+  const weekDayNumber = convertedDate.dayNumber
 
-  const today = createDate()
+  const today = useMemo(() => createDate(), [])
   const isToday =
-    dateObj.year === today.year &&
-    dateObj.monthIndex === today.monthIndex &&
-    dateObj.dayNumber === today.dayNumber
+    convertedDate.year === today.year &&
+    convertedDate.monthIndex === today.monthIndex &&
+    convertedDate.dayNumber === today.dayNumber
 
   return (
     <div className={cn(styles.dateCell, { [styles.today]: isToday })}>
-      <p className={styles.weekName}>{weekDayName}</p>
-      <p className={styles.weekNumber}>{weekDayNumber}</p>
+      <span className={styles.weekName}>{weekDayName}</span>
+      <span className={styles.weekNumber}>{weekDayNumber}</span>
     </div>
   )
 }
+
+export const DateCellMemo = memo(DateCell)

@@ -1,20 +1,20 @@
 import styles from './DayColumn.module.css'
-import { QTY_HOURS } from '@/constants/constants.ts'
+import { QTY_BLOCKS_IN_HOUR, QTY_HOURS } from '@/constants/constants.ts'
+import { memo, useMemo } from 'react'
 
-const QTY_HOUR_PARTS = 4
-
-export const DayColumn = () => {
-  const timeList = new Array(QTY_HOURS * QTY_HOUR_PARTS).fill('')
+const DayColumn = () => {
+  const timeList = useMemo(
+    () => new Array(QTY_HOURS * QTY_BLOCKS_IN_HOUR).fill(''),
+    [],
+  )
 
   return (
     <div className={styles.dayColumn}>
       {timeList.map((_, index) => (
-        <div
-          className={styles.cell}
-          key={index}
-          onClick={() => console.log('cell: ', 24 * index)}
-        />
+        <div className={styles.cell} key={index} />
       ))}
     </div>
   )
 }
+
+export const DayColumnMemo = memo(DayColumn)

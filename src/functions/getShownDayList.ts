@@ -1,8 +1,8 @@
 import { getQtyDaysOfMonth } from '@/functions/getQtyDaysOfMonth.ts'
-import { createMonth, MonthObj } from '@/functions/createMonth.ts'
+import { createMonth, CustomMonth } from '@/functions/createMonth.ts'
 import { QTY_WEEK_DAYS } from '@/constants/constants.ts'
 
-export const getShownDayList = (month: MonthObj, year: number) => {
+export const getShownDayList = (month: CustomMonth, year: number) => {
   const qtyDaysOfMonth = getQtyDaysOfMonth(month.monthIndex, year)
 
   const prevMonthDayList = createMonth(

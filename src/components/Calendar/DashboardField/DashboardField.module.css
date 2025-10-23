@@ -1,6 +1,6 @@
 .dashboard-field {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  min-height: 0;
+  flex: 1;
+  /*min-height: 0;*/
 }

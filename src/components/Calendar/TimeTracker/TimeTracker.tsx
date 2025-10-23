@@ -1,7 +1,8 @@
 import styles from './TimeTracker.module.css'
 import { createDate } from '@/functions/createDate.ts'
+import { QTY_BLOCKS_IN_HOUR } from '@/constants/constants.ts'
 
-const QTY_PX_IN_HOUR = 24 * 4
+const QTY_PX_IN_HOUR = 24 * QTY_BLOCKS_IN_HOUR
 const coeff = QTY_PX_IN_HOUR / 60
 
 export const TimeTracker = () => {
@@ -13,7 +14,10 @@ export const TimeTracker = () => {
   const position = Math.round(minutesSinceMidnight * coeff)
 
   return (
-    <div className={styles.timeTracker} style={{ top: `${position}px` }}>
+    <div
+      className={styles.timeTracker}
+      style={{ transform: `translate(${position}px)` }}
+    >
       <div className={styles.line}></div>
       <div className={styles.timeContainer}>
         {hours}:{minutes}
