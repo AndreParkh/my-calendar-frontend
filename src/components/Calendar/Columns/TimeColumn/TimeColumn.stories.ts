@@ -1,14 +1,14 @@
-import { TimeColumn } from './TimeColumn.tsx'
+import { TimeColumnMemo } from './TimeColumn.tsx'
 import { Meta, StoryObj } from '@storybook/react-vite'
 import { QTY_HOURS } from '@/constants/constants.ts'
 
-const meta: Meta<typeof TimeColumn> = {
-  component: TimeColumn,
+const meta: Meta<typeof TimeColumnMemo> = {
+  component: TimeColumnMemo,
 }
 
 export default meta
 
-type Story = StoryObj<typeof TimeColumn>
+type Story = StoryObj<typeof TimeColumnMemo>
 
 const timeList = new Array(QTY_HOURS)
   .fill('')

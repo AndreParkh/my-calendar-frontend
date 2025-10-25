@@ -6,7 +6,7 @@ const QTY_PX_IN_HOUR = 24 * QTY_BLOCKS_IN_HOUR
 const coeff = QTY_PX_IN_HOUR / 60
 
 export const TimeTracker = () => {
-  const { date: now, year, monthIndex, dayNumber } = createDate(new Date())
+  const { date: now, year, monthIndex, dayNumber } = createDate()
   const hours = ('00' + now.getHours()).slice(-2)
   const minutes = ('00' + now.getMinutes()).slice(-2)
   const tonight = new Date(year, monthIndex, dayNumber)
@@ -16,7 +16,7 @@ export const TimeTracker = () => {
   return (
     <div
       className={styles.timeTracker}
-      style={{ transform: `translate(${position}px)` }}
+      style={{ transform: `translateY(${position}px)` }}
     >
       <div className={styles.line}></div>
       <div className={styles.timeContainer}>

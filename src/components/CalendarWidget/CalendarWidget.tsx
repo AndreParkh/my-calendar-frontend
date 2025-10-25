@@ -99,7 +99,7 @@ export const CalendarWidget = () => {
           {shownDayList.map((dayItem, idx) => (
             <DayItemMemo
               key={idx}
-              dayObj={dayItem}
+              customDate={dayItem}
               isOtherMonth={dayItem.monthIndex !== shownMonth.monthIndex}
               onClick={() => clickHandler(dayItem)}
             />

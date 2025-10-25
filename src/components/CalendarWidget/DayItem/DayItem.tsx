@@ -8,21 +8,21 @@ interface DayItemProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  dayObj: CustomDate
+  customDate: CustomDate
   isOtherMonth?: boolean
 }
 
 const DayItem = ({
-  dayObj,
+  customDate,
   isOtherMonth = false,
   onClick,
   ...props
 }: DayItemProps) => {
   const today = useMemo(() => createDate(), [])
   const isToday =
-    dayObj.year === today.year &&
-    dayObj.monthIndex === today.monthIndex &&
-    dayObj.dayNumber === today.dayNumber
+    customDate.year === today.year &&
+    customDate.monthIndex === today.monthIndex &&
+    customDate.dayNumber === today.dayNumber
 
   return (
     <button
@@ -33,7 +33,7 @@ const DayItem = ({
       onClick={onClick}
       {...props}
     >
-      {dayObj.dayNumber}
+      {customDate.dayNumber}
     </button>
   )
 }

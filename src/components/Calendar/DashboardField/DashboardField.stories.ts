@@ -1,12 +1,12 @@
-import { DashboardField } from './DashboardField.tsx'
+import { DashboardFieldMemo } from './DashboardField.tsx'
 import { Meta, StoryObj } from '@storybook/react-vite'
 
-const meta: Meta<typeof DashboardField> = {
-  component: DashboardField,
+const meta: Meta<typeof DashboardFieldMemo> = {
+  component: DashboardFieldMemo,
 }
 
 export default meta
 
-type Story = StoryObj<typeof DashboardField>
+type Story = StoryObj<typeof DashboardFieldMemo>
 
 export const Default: Story = {}
