@@ -1,17 +1,17 @@
 import styles from './TimeTracker.module.css'
-import { createDate } from '@/functions/createDate.ts'
 import { QTY_BLOCKS_IN_HOUR } from '@/constants/constants.ts'
+import { useTime } from '@/hooks/useTime.ts'
 
-const QTY_PX_IN_HOUR = 24 * QTY_BLOCKS_IN_HOUR
-const coeff = QTY_PX_IN_HOUR / 60
+const QTY_PX_IN_BLOCK = 24
+const QTY_PX_IN_HOUR = QTY_PX_IN_BLOCK * QTY_BLOCKS_IN_HOUR
+const QTY_MIN_IN_HOURS = 60
+const coefficient = QTY_PX_IN_HOUR / QTY_MIN_IN_HOURS
 
 export const TimeTracker = () => {
-  const { date: now, year, monthIndex, dayNumber } = createDate()
-  const hours = ('00' + now.getHours()).slice(-2)
-  const minutes = ('00' + now.getMinutes()).slice(-2)
-  const tonight = new Date(year, monthIndex, dayNumber)
-  const minutesSinceMidnight = (now.getTime() - tonight.getTime()) / 1000 / 60
-  const position = Math.round(minutesSinceMidnight * coeff)
+  const { minutesSinceMidnight, formatTime } = useTime()
+
+  const position = Math.round(minutesSinceMidnight * coefficient)
+  const formatedTime = formatTime('HH:mm')
 
   return (
     <div
@@ -19,9 +19,7 @@ export const TimeTracker = () => {
       style={{ transform: `translateY(${position}px)` }}
     >
       <div className={styles.line}></div>
-      <div className={styles.timeContainer}>
-        {hours}:{minutes}
-      </div>
+      <div className={styles.timeContainer}>{formatedTime}</div>
     </div>
   )
 }

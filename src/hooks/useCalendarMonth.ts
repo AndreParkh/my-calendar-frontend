@@ -1,18 +1,24 @@
 import { getQtyDaysOfMonth } from '@/functions/getQtyDaysOfMonth.ts'
-import { createMonth, CustomMonth } from '@/functions/createMonth.ts'
 import { QTY_WEEK_DAYS } from '@/constants/constants.ts'
+import { useCustomMonth } from '@/hooks/useCustomMonth.ts'
+import { useMemo } from 'react'
+import { createDate } from '@/functions/createDate.ts'
 
-export const getShownDayList = (month: CustomMonth, year: number) => {
-  const qtyDaysOfMonth = getQtyDaysOfMonth(month.monthIndex, year)
+export const useCalendarMonth = (date: Date) => {
+  const { monthIndex, year } = useMemo(() => createDate(date), [date])
+  const qtyDaysOfMonth = useMemo(
+    () => getQtyDaysOfMonth(monthIndex, year),
+    [monthIndex, year],
+  )
 
-  const prevMonthDayList = createMonth(
-    new Date(year, month.monthIndex - 1),
+  const prevMonthDayList = useCustomMonth(
+    new Date(year, monthIndex - 1),
   ).createMonthDayList()
-  const nextMonthDayList = createMonth(
-    new Date(year, month.monthIndex + 1),
+  const nextMonthDayList = useCustomMonth(
+    new Date(year, monthIndex + 1),
   ).createMonthDayList()
-  const dayList = createMonth(
-    new Date(year, month.monthIndex),
+  const dayList = useCustomMonth(
+    new Date(year, monthIndex),
   ).createMonthDayList()
 
   const firstDay = dayList[0]

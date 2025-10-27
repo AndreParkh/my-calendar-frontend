@@ -11,6 +11,10 @@ export const createDate = (date: Date = new Date()) => {
   const monthNumber = monthIndex + 1
   const monthName = date.toLocaleDateString(LOCAL, { month: 'long' })
 
+  const hour = ('00' + date.getHours()).slice(-2)
+  const minute = ('00' + date.getMinutes()).slice(-2)
+  const second = ('00' + date.getSeconds()).slice(-2)
+
   return {
     date,
     dayNumber,
@@ -20,6 +24,9 @@ export const createDate = (date: Date = new Date()) => {
     monthIndex,
     monthNumber,
     monthName,
+    hour,
+    minute,
+    second,
   }
 }
 

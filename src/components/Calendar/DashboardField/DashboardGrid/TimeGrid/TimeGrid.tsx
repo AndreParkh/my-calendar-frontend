@@ -1,21 +1,16 @@
 import styles from './TimeGrid.module.css'
 import { DayColumnMemo } from '@/components/Calendar/Columns/DayColumn/DayColumn.tsx'
-import { createWeek } from '@/functions/createWeek.ts'
-import { useAppSelector } from '@/store/hooks.ts'
-import { selectSelectedDate } from '@/store/selectors.ts'
-import { memo, useMemo } from 'react'
+import { memo } from 'react'
+import { v4 as v4uuid } from 'uuid'
+import { QTY_WEEK_DAYS } from '@/constants/constants.ts'
 
 export const TimeGrid = () => {
-  const selectedDate = useAppSelector(selectSelectedDate)
-  const weekDayList = useMemo(
-    () => createWeek(new Date(selectedDate)),
-    [selectedDate],
-  )
+  const weekDayList = new Array(QTY_WEEK_DAYS).fill(null)
 
   return (
     <div className={styles.timeGrid}>
-      {weekDayList.map((_, idx) => (
-        <DayColumnMemo key={idx} />
+      {weekDayList.map(() => (
+        <DayColumnMemo key={v4uuid()} />
       ))}
     </div>
   )

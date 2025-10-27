@@ -26,16 +26,16 @@
 }
 
 .line::before {
-  left: -.24rem;
+  left: -.2rem;
 }
 
 .line::after {
-  right: -.24rem;
+  right: -.2rem;
 }
 
 .time-container {
   position: absolute;
-  top: -1rem;
+  top: -.8rem;
   background-color: black;
   color: var(--contrast-font-color);
   font-weight: 600;

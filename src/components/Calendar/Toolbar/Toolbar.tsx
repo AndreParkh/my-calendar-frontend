@@ -1,34 +1,12 @@
 import styles from './Toolbar.module.css'
 import cn from 'classnames'
-import { createDate } from '@/functions/createDate.ts'
 import arrowUrl from '/arrow.svg?url'
 import { Button } from '@/components/Button/Button'
-import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
-import { selectSelectedDate } from '@/store/selectors.ts'
-import { setDate } from '@/store/reducers/calendarSlice.ts'
-import { NEXT, PREV, QTY_WEEK_DAYS } from '@/constants/constants.ts'
-import { useMemo } from 'react'
-import { NextPrev } from '@/types/types.ts'
+import { NEXT, PREV } from '@/constants/constants.ts'
+import { useToolbar } from '@/components/Calendar/Toolbar/useToolbar.ts'
 
 export const Toolbar = () => {
-  const selectedDate = useAppSelector(selectSelectedDate)
-  const dispatch = useAppDispatch()
-
-  const date = useMemo(() => createDate(new Date(selectedDate)), [selectedDate])
-  const monthAndYear = `${date.monthName[0].toUpperCase()}${date.monthName.slice(1)} ${date.year}`
-
-  const changeWeek = (direction: NextPrev) => {
-    const day =
-      direction === NEXT
-        ? date.dayNumber + QTY_WEEK_DAYS
-        : date.dayNumber - QTY_WEEK_DAYS
-
-    dispatch(setDate(new Date(date.year, date.monthIndex, day).toISOString()))
-  }
-
-  const setToday = () => {
-    dispatch(setDate(new Date().toISOString()))
-  }
+  const { monthAndYear, changeWeek, setToday } = useToolbar()
 
   return (
     <div className={styles.toolbar}>

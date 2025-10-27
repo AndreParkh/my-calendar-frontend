@@ -19,10 +19,13 @@ const DayItem = ({
   ...props
 }: DayItemProps) => {
   const today = useMemo(() => createDate(), [])
-  const isToday =
-    customDate.year === today.year &&
-    customDate.monthIndex === today.monthIndex &&
-    customDate.dayNumber === today.dayNumber
+  const isToday = useMemo(
+    () =>
+      customDate.year === today.year &&
+      customDate.monthIndex === today.monthIndex &&
+      customDate.dayNumber === today.dayNumber,
+    [today, customDate],
+  )
 
   return (
     <button
