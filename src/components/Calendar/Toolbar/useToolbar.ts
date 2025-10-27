@@ -33,9 +33,14 @@ export const useToolbar = () => {
     dispatch(setDate(new Date().toISOString()))
   }, [dispatch])
 
-  return {
-    monthAndYear,
-    setToday,
-    changeWeek,
-  }
+  const resultMemo = useMemo(
+    () => ({
+      monthAndYear,
+      setToday,
+      changeWeek,
+    }),
+    [monthAndYear, setToday, changeWeek],
+  )
+
+  return resultMemo
 }

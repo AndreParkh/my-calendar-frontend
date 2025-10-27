@@ -52,10 +52,15 @@ export const useCalendarWidget = () => {
     [monthIndex, dispatch],
   )
 
-  return {
-    convertedSelectedDate,
-    shownDayList,
-    changeMonth,
-    changeSelectedDate,
-  }
+  const resultMemo = useMemo(
+    () => ({
+      convertedSelectedDate,
+      shownDayList,
+      changeMonth,
+      changeSelectedDate,
+    }),
+    [convertedSelectedDate, shownDayList, changeMonth, changeSelectedDate],
+  )
+
+  return resultMemo
 }

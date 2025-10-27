@@ -8,20 +8,25 @@ export interface DateCellProps {
 }
 
 const DateCell = ({ date }: DateCellProps) => {
-  const convertedDate = useMemo(() => createDate(date), [date])
-  const weekDayName = convertedDate.weekDayName.toUpperCase()
-  const weekDayNumber = convertedDate.dayNumber
+  const { year, monthIndex, weekDayName, dayNumber } = useMemo(
+    () => createDate(date),
+    [date],
+  ) //convertedDate
+  const weekDayNameUC = weekDayName.toUpperCase()
 
   const today = useMemo(() => createDate(), [])
-  const isToday =
-    convertedDate.year === today.year &&
-    convertedDate.monthIndex === today.monthIndex &&
-    convertedDate.dayNumber === today.dayNumber
+  const isToday = useMemo(
+    () =>
+      year === today.year &&
+      monthIndex === today.monthIndex &&
+      dayNumber === today.dayNumber,
+    [year, monthIndex, dayNumber, today],
+  )
 
   return (
     <div className={cn(styles.dateCell, { [styles.today]: isToday })}>
-      <span className={styles.weekName}>{weekDayName}</span>
-      <span className={styles.weekNumber}>{weekDayNumber}</span>
+      <span className={styles.weekName}>{weekDayNameUC}</span>
+      <span className={styles.weekNumber}>{dayNumber}</span>
     </div>
   )
 }

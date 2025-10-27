@@ -8,9 +8,15 @@ export const useCalendarWeek = (date: Date): Date[] => {
     [date],
   )
 
-  const isSunday = weekDayNumber === 0
-  const qtyDaysBefore = isSunday ? QTY_WEEK_DAYS - 1 : weekDayNumber - 1
-  const qtyDaysAfter = isSunday ? 0 : QTY_WEEK_DAYS - weekDayNumber
+  const isSunday = useMemo(() => weekDayNumber === 0, [weekDayNumber])
+  const qtyDaysBefore = useMemo(
+    () => (isSunday ? QTY_WEEK_DAYS - 1 : weekDayNumber - 1),
+    [isSunday, weekDayNumber],
+  )
+  const qtyDaysAfter = useMemo(
+    () => (isSunday ? 0 : QTY_WEEK_DAYS - weekDayNumber),
+    [isSunday, weekDayNumber],
+  )
 
   const weekDays = []
   for (let i = qtyDaysBefore; i > 0; i--) {

@@ -24,15 +24,21 @@ export const useCalendarMonth = (date: Date) => {
   const firstDay = dayList[0]
   const lastDay = dayList[qtyDaysOfMonth - 1]
 
-  const firstDayIsSunday = firstDay.weekDayNumber === 0
-  const lastDayIsSunday = lastDay.weekDayNumber === 0
+  const firstDayIsSunday = useMemo(
+    () => firstDay.weekDayNumber === 0,
+    [firstDay],
+  )
+  const lastDayIsSunday = useMemo(() => lastDay.weekDayNumber === 0, [lastDay])
 
-  const qtyPrevDays = firstDayIsSunday
-    ? QTY_WEEK_DAYS - 1
-    : firstDay.weekDayNumber - 1
-  const qtyNextDays = lastDayIsSunday
-    ? 0
-    : QTY_WEEK_DAYS - lastDay.weekDayNumber
+  const qtyPrevDays = useMemo(
+    () => (firstDayIsSunday ? QTY_WEEK_DAYS - 1 : firstDay.weekDayNumber - 1),
+    [firstDay, firstDayIsSunday],
+  )
+
+  const qtyNextDays = useMemo(
+    () => (lastDayIsSunday ? 0 : QTY_WEEK_DAYS - lastDay.weekDayNumber),
+    [lastDay, lastDayIsSunday],
+  )
 
   const result = []
 
