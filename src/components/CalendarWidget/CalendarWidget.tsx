@@ -5,6 +5,10 @@ import { Button } from '@/components'
 import arrowUrl from '/arrow.svg?url'
 import { NEXT, PREV } from '@/constants/constants.ts'
 import { useCalendarWidget } from '@/components/CalendarWidget/useCalendarWidget.ts'
+import { useTranslation } from 'react-i18next'
+import { v4 as v4uuid } from 'uuid'
+
+const SEPARATOR = '|'
 
 export const CalendarWidget = () => {
   const {
@@ -13,8 +17,11 @@ export const CalendarWidget = () => {
     shownDayList,
     changeMonth,
   } = useCalendarWidget()
-  const weekDayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+  const { t } = useTranslation('dashboard')
   const { monthName, monthIndex } = convertedSelectedDate
+  const weekDayNames = t('weekday.names', { joinArrays: SEPARATOR }).split(
+    SEPARATOR,
+  )
 
   return (
     <div className={styles.calendarWidget}>
@@ -43,10 +50,10 @@ export const CalendarWidget = () => {
           </Button>
         </div>
         <div className={styles.weekNames}>
-          {weekDayNames.map((weekDayName, idx) => (
-            <p key={idx} className={styles.weekDayName}>
+          {weekDayNames.map((weekDayName) => (
+            <span key={v4uuid()} className={styles.weekDayName}>
               {weekDayName}
-            </p>
+            </span>
           ))}
         </div>
         <div className={styles.days}>

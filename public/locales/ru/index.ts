@@ -1,3 +1,5 @@
 export { header } from './header'
 export { login } from './login'
 export { register } from './register'
+export { toolbar } from './toolbar'
+export { dashboard } from './dashboard'
