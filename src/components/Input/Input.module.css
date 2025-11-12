@@ -8,7 +8,7 @@
   box-sizing: border-box;
   padding: .75rem 1rem;
   border-radius: var(--border-radius);
-  border: 1px solid var(--gray);
+  border: 1px solid var(--secondary-color);
   width: 100%;
 }
 
@@ -17,12 +17,12 @@
 }
 
 .error {
-  border-color: var(--error-text-coror);
+  border-color: var(--error-text-color);
 }
 
 .error-message {
   position: absolute;
-  color: var(--error-text-coror);
+  color: var(--error-text-color);
   font-size: .75rem;
   padding-left: 1.25rem;
 }

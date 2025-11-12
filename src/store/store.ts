@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import authReducer from '@/store/reducers/authSlice.ts'
 import sliderReducer from '@/store/reducers/sliderSlice.ts'
+import calendarReducer from '@/store/reducers/calendarSlice.ts'
 
 const rootReducer = combineReducers({
   authReducer,
   sliderReducer,
+  calendarReducer,
 })
 
 export type RootStore = ReturnType<typeof rootReducer>

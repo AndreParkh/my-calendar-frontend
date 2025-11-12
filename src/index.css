@@ -1,20 +1,30 @@
 @import url('../node_modules/reset-css/reset.css');
 
 :root {
-  --primary-color: hsl(204deg 53% 49% / 100%);
-  --secondary-color: hsl(210deg 14% 97% / 100%);
-  --placeholder-color: hsl(0deg 0% 85% / 100%);
-  --divider-color: hsl(0deg 0% 73% / 100%);
-  --gray: hsl(0deg 0% 85% / 100%);
+  --secondary-color: hsla(0deg 0% 89% / 100%);
+
+  --primary-font-color: hsla(0deg 0% 0% / 100%);
+  --secondary-font-color: hsla(233deg 4% 44% / 100%);
+  --contrast-font-color: hsla(0deg 0% 96% / 100%);
+
+  --primary-background-color: hsla(0deg 0% 14% / 100%);
+  --secondary-background-color: hsla(0deg 0% 96% / 100%);
+
+  --gray-background: hsla(0deg 0% 96% / 100%);
+
+  --accent-color: hsla(223deg 95% 61% / 100%);
+  --accent-hover-color: hsla(223deg 95% 55% / 100%);
+  --event-work-color: hsla(217deg 35% 90% / 100%);
+  --event-personal-color: hsla(175deg 59% 91% / 100%);
+  --event-family-color: hsla(34deg 83% 91% / 100%);
+  --yandex-button-color: hsla(240deg 11% 18% / 100%);
+  --hover-yandex-button-color: hsla(240 11% 28% / 100%);
+  --error-text-color: hsla(0deg 100% 50% / 100%);
   --border-radius: .625rem;
-  --border-radius-color: hsl(0deg 0% 100% / 100%);
-  --hover-primary-color: hsl(204deg 53% 59% / 100%);
-  --primary-font-color: hsla(0deg 0% 100% / 87%);
-  --secondary-font-color: hsl(0deg 0% 100% / 100%);
-  --background-color: hsla(0deg 0% 14% / 100%);
-  --error-text-coror: hsl(0deg 100% 50% / 100%);
-  --yandex-button-color: hsla(240, 11%, 18%, 100%);
-  --hover-yandex-button-color: hsla(240, 11%, 28%, 100%);
+  --dark-background: hsla(0, 0%, 96%, 1);
+  --shadow-color: hsla(206deg 40% 22% / 20%);
+  --scrollbar-thumb-color: hsla(0deg 0% 0% / 30%);
+  --scrollbar-thumb-hover-color: hsla(0deg 0% 0% / 50%);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -30,16 +40,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  padding: 0;
-  margin: 0 auto;
-  height: 100vh;
-  width: 90rem;
-}
-
 body {
   margin: 0;
+  height: 100vh;
+}
+
+#root {
+  display: flex;
+  margin: 0 auto;
   height: 100%;
+  width: 90rem;
 }
 
 @media (prefers-color-scheme: light) {

@@ -4,7 +4,7 @@ import { Slider } from '@/components'
 
 export const AuthLayout = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.authLayout}>
       <div className={styles.content}>
         <Slider />
         <div className={styles.divider} />

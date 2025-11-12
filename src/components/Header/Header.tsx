@@ -9,6 +9,8 @@ import { clearToken } from '@/store/reducers/authSlice.ts'
 import Cookies from 'js-cookie'
 import { AUTH_TOKEN } from '@/constants/constants.ts'
 
+const LOGO_PATH = '/Logo.png'
+
 export const Header = () => {
   const { t } = useTranslation('header')
   const token = useAppSelector(selectAuthToken)
@@ -26,9 +28,14 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <img className={styles.icon} src={'/Logo.png'} alt={'alt'}></img>
+      <img className={styles.icon} src={LOGO_PATH} alt="logo"></img>
       <h1 className={styles.name}>{t('top.title')}</h1>
-      <Button className={styles.authButton} onClick={authHandle}>
+      <Button
+        className={styles.authButton}
+        color="blue"
+        size="medium"
+        onClick={authHandle}
+      >
         {token ? t('top.button.logout') : t('top.button.login')}
       </Button>
     </header>

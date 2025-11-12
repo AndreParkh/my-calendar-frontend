@@ -6,5 +6,5 @@
 
 .message {
   font-size: .75rem;
-  color: var(--error-text-coror);
+  color: var(--error-text-color);
 }

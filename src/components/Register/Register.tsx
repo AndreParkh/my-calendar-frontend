@@ -131,7 +131,7 @@ export const Register = () => {
             })}
           />
         </label>
-        <Button>
+        <Button color={'blue'} size={'medium'}>
           {loading ? t('form.button.loading') : t('form.button.text')}
         </Button>
         <ErrorSpan message={error} clearError={clearAuthError} />
