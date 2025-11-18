@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
 import { selectSelectedDate } from '@/store/selectors.ts'
 import { createDate } from '@/functions/createDate.ts'
 import { useCallback, useMemo, useState } from 'react'
-import { useCalendarMonth } from '@/hooks/useCalendarMonth.ts'
+import { useWidgetMonth } from '@/hooks/useWidgetMonth.ts'
 import {
   FIRST_MONTH_INDEX,
   LAST_MONTH_INDEX,
@@ -15,7 +15,7 @@ export const useCalendarWidget = () => {
   const dispatch = useAppDispatch()
   const selectedDateISO = useAppSelector(selectSelectedDate)
   const [shownDate, setShownDate] = useState(new Date(selectedDateISO))
-  const shownDayList = useCalendarMonth(shownDate)
+  const shownDayList = useWidgetMonth(shownDate)
 
   const convertedSelectedDate = useMemo(
     () => createDate(shownDate),

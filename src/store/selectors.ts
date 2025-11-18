@@ -20,3 +20,13 @@ const selectCalendarState = (state: RootStore) => state.calendarReducer
 
 export const selectSelectedDate = (state: RootStore) =>
   selectCalendarState(state).selectedDate
+export const selectShownWeek = (state: RootStore) =>
+  selectCalendarState(state).shownWeek
+
+const selectEventState = (state: RootStore) => state.eventReducer
+
+export const selectEvents = (state: RootStore) => selectEventState(state).events
+export const selectEventError = (state: RootStore) =>
+  selectEventState(state).error
+export const selectEventLoading = (state: RootStore) =>
+  selectEventState(state).loading

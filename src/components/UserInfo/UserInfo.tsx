@@ -1,10 +1,10 @@
 import { use } from 'react'
-import { UserResponseInterface } from '@/interfaces/UserResponse.interface.ts'
+import { IUserResponse } from '@/interfaces/UserResponse.interface.ts'
 
 export const UserInfo = ({
   userPromise,
 }: {
-  userPromise: Promise<UserResponseInterface>
+  userPromise: Promise<IUserResponse>
 }) => {
   const user = use(userPromise)
 

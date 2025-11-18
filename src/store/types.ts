@@ -1,20 +1,25 @@
-export interface AuthState {
+import { IEventResponse } from '@/interfaces/EventResponse.interface.ts'
+
+export interface IAuthState {
   token: string | null
   loading: boolean
   error: string
 }
 
-export interface SliderState {
+export interface ISliderState {
   sliderNumber: number
   slidesCount: number
 }
 
 export interface CalendarState {
   selectedDate: string | number
+  shownWeek: string[]
 }
 
-export interface LoginResponse {
-  token: string
+export interface IEventState {
+  events: IEventResponse[]
+  loading: boolean
+  error: string
 }
 
 export interface ILogin {
@@ -28,4 +33,9 @@ export interface IRegister {
   email: string
   password: string
   confirmPassword: string
+}
+
+export interface IEventByDataBetween {
+  start: Date
+  end: Date
 }

@@ -15,7 +15,7 @@ export const registerThunk = createAsyncThunk<
     const response = await API.auth.register(registerData)
     const token = response.data.token
     Cookies.set(AUTH_TOKEN, token)
-    redirect(routesPaths.app.user)
+    redirect(routesPaths.app.dashboard)
     return token
   } catch {
     return thunkAPI.rejectWithValue('Неуспешная регистрация')

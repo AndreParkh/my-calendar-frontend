@@ -3,6 +3,7 @@ import { CalendarState } from '@/store/types.ts'
 
 const initialState: CalendarState = {
   selectedDate: new Date().toISOString(),
+  shownWeek: [],
 }
 
 const calendarSlice = createSlice({
@@ -15,8 +16,11 @@ const calendarSlice = createSlice({
     ) => {
       state.selectedDate = action.payload
     },
+    setShownWeek: (state, action: PayloadAction<string[]>) => {
+      state.shownWeek = action.payload
+    },
   },
 })
 
-export const { setDate } = calendarSlice.actions
+export const { setDate, setShownWeek } = calendarSlice.actions
 export default calendarSlice.reducer
