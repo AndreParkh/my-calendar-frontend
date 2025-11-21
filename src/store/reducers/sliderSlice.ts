@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { SliderState } from '@/store/types.ts'
+import { ISliderState } from '@/store/types.ts'
 import { slides } from '@/components/Slider/slides.ts'
 
-const initialState: SliderState = {
+const initialState: ISliderState = {
   sliderNumber: 0,
   slidesCount: slides.length,
 }

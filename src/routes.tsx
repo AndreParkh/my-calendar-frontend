@@ -17,7 +17,7 @@ export const routesPaths = {
     register: '/auth/register',
   },
   app: {
-    user: '/user',
+    dashboard: '/dashboard',
   },
 }
 
@@ -29,7 +29,7 @@ export const routes: RouteObject[] = [
       {
         path: 'auth',
         element: (
-          <ProtectedRoute redirectAuthPath={routesPaths.app.user}>
+          <ProtectedRoute redirectAuthPath={routesPaths.app.dashboard}>
             <AuthLayout />
           </ProtectedRoute>
         ),

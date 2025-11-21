@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: .5rem;
+  margin: .5rem;
+  border-radius: var(--border-radius);
+  gap: .25rem;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.duration {
+  color: var(--secondary-font-color);
+  font-weight: 600;
+}
+
+.participants {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.creator {
+  font-weight: 600;
+}
+
+.more-info-link:hover {
+  text-decoration: underline;
+}
+
+.work {
+  background-color: var(--event-work-color);
+}
+
+.personal {
+  background-color: var(--event-personal-color);
+}
+
+.family {
+  background-color: var(--event-family-color);
+}

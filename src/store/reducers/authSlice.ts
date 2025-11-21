@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthState } from '@/store/types.ts'
+import { IAuthState } from '@/store/types.ts'
 import { login } from '@/store/thunks/loginThunk.ts'
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   token: null,
   loading: false,
   error: '',

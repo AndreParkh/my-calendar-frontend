@@ -13,7 +13,7 @@ export const login = createAsyncThunk<string, ILogin, { rejectValue: string }>(
       const response = await API.auth.login(credentials)
       const token = response.data.token
       Cookies.set(AUTH_TOKEN, token)
-      redirect(routesPaths.app.user)
+      redirect(routesPaths.app.dashboard)
       return token
     } catch {
       return thunkAPI.rejectWithValue('Неуспешная авторизация')
