@@ -30,6 +30,12 @@ export const API = {
           'Content-Type': 'application/json',
         },
       }),
+    getAuthorizedUser: () =>
+      apiClient.get(`${backend}/private/users/me`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }),
   },
   event: {
     getByDateBetween: (dates: IEventByDataBetween) =>

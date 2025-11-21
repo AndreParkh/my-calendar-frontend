@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import styles from '@/components/Event/Event.module.css'
+import styles from '@/components/Avatar/Avatar.module.css'
 import { LARGE, MEDIUM, SMALL } from '@/constants/constants.ts'
 
 export type SizeType = 'small' | 'medium' | 'large'
@@ -11,15 +11,15 @@ interface AvatarProps {
 
 export const Avatar = ({ size, avatarUrl }: AvatarProps) => {
   return (
-    <div
+    <img
       className={cn(
         styles.avatar,
         { [styles.small]: size === SMALL },
         { [styles.medium]: size === MEDIUM },
         { [styles.large]: size === LARGE },
       )}
-    >
-      <img width={'20px'} src={avatarUrl} alt={'avatar'} />
-    </div>
+      src={avatarUrl}
+      alt={'avatar'}
+    />
   )
 }

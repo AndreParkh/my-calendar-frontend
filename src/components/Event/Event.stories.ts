@@ -5,13 +5,23 @@ import {
   EVENT_PERSONAL,
   EVENT_WORK,
 } from '@/constants/constants.ts'
-import { IEventResponse } from '@/interfaces/EventResponse.interface.ts'
+import {
+  IEventResponse,
+  IShortUserInfo,
+} from '@/interfaces/EventResponse.interface.ts'
 
 const meta: Meta<typeof Event> = {
   component: Event,
 }
 
 export default meta
+
+const creator: IShortUserInfo = {
+  id: 1,
+  firstName: 'Иван',
+  lastName: 'Иванов',
+  avatarUrl: `https://avatar.iran.liara.run/username?username=Иван+Иванов`,
+}
 
 const workEvent: IEventResponse = {
   id: 1,
@@ -20,9 +30,10 @@ const workEvent: IEventResponse = {
   startTime: new Date(2025, 9, 30, 9, 0).toISOString().slice(0, -1),
   endTime: new Date(2025, 9, 30, 10, 0).toISOString().slice(0, -1),
   isRepeating: false,
-  createdBy: 1,
+  createdBy: creator,
   createdAt: new Date(2025, 9, 29, 10, 0).toISOString().slice(0, -1),
   repeatRule: '',
+  participants: [creator],
 }
 
 const personalEvent: IEventResponse = {
@@ -32,9 +43,10 @@ const personalEvent: IEventResponse = {
   startTime: new Date(2025, 9, 30, 16, 0).toISOString().slice(0, -1),
   endTime: new Date(2025, 9, 30, 17, 30).toISOString().slice(0, -1),
   isRepeating: false,
-  createdBy: 1,
+  createdBy: creator,
   createdAt: new Date(2025, 9, 29, 10, 0).toISOString().slice(0, -1),
   repeatRule: '',
+  participants: [creator],
 }
 
 const familyEvent: IEventResponse = {
@@ -44,9 +56,10 @@ const familyEvent: IEventResponse = {
   startTime: new Date(2025, 9, 30, 1, 0).toISOString().slice(0, -1),
   endTime: new Date(2025, 9, 30, 2, 0).toISOString().slice(0, -1),
   isRepeating: false,
-  createdBy: 1,
+  createdBy: creator,
   createdAt: new Date(2025, 9, 29, 10, 0).toISOString().slice(0, -1),
   repeatRule: '',
+  participants: [creator],
 }
 
 type Story = StoryObj<typeof Event>

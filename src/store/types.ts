@@ -1,4 +1,5 @@
 import { IEventResponse } from '@/interfaces/EventResponse.interface.ts'
+import { IUserResponse } from '@/interfaces/UserResponse.interface.ts'
 
 export interface IAuthState {
   token: string | null
@@ -18,6 +19,12 @@ export interface CalendarState {
 
 export interface IEventState {
   events: IEventResponse[]
+  loading: boolean
+  error: string
+}
+
+export interface IUserState {
+  authorizedUser: IUserResponse | null
   loading: boolean
   error: string
 }

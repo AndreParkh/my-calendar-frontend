@@ -1,5 +1,5 @@
 export const event = {
-  createdBy: {
+  creator: {
     self: 'Вы',
   },
 }

@@ -31,7 +31,8 @@
   gap: .4rem;
 }
 
-.created-by {
+.creator {
+  font-weight: 600;
 }
 
 .more-info-link:hover {

@@ -11,7 +11,7 @@ export interface IEventResponse {
   participants: IShortUserInfo[]
 }
 
-interface IShortUserInfo {
+export interface IShortUserInfo {
   id: number
   firstName: string
   lastName: string

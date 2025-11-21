@@ -30,3 +30,11 @@ export const selectEventError = (state: RootStore) =>
   selectEventState(state).error
 export const selectEventLoading = (state: RootStore) =>
   selectEventState(state).loading
+
+const selectUserState = (state: RootStore) => state.userReducer
+export const selectAuthorizedUser = (state: RootStore) =>
+  selectUserState(state).authorizedUser
+export const selectAuthorizedUserError = (state: RootStore) =>
+  selectUserState(state).error
+export const selectAuthorizedUserLoading = (state: RootStore) =>
+  selectUserState(state).loading

@@ -15,8 +15,11 @@ export const createDate = (date: Date = new Date()) => {
   const minute = ('00' + date.getMinutes()).slice(-2)
   const second = ('00' + date.getSeconds()).slice(-2)
 
+  const dateUtc = new Date(Date.UTC(year, monthIndex, dayNumber))
+
   return {
     date,
+    dateUtc,
     dayNumber,
     weekDayNumber,
     weekDayName,

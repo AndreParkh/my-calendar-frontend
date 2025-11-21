@@ -11,9 +11,6 @@ import { useEvent } from '@/components/Event/useEvent.ts'
 import { Avatar } from '@/components/Avatar/Avatar.tsx'
 
 export type TypeEvent = 'work' | 'personal' | 'family'
-//TODO: заменить на нормальный url
-const ULR_TEMPLATE =
-  'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
 
 export interface EventProps {
   event: IEventResponse
@@ -24,6 +21,7 @@ export const Event = ({ event, type }: EventProps) => {
   const {
     title,
     createdBy,
+    creator,
     duration,
     position,
     size,
@@ -49,11 +47,9 @@ export const Event = ({ event, type }: EventProps) => {
         <h3 className={styles.title}>{title}</h3>
         <span className={styles.duration}>{duration}</span>
         <div className={styles.participants}>
-          <Avatar size={SMALL} avatarUrl={ULR_TEMPLATE} />
+          <Avatar size={SMALL} avatarUrl={createdBy.avatarUrl} />
           <div className={styles.ava}></div>
-          <span className={styles.createdBy}>
-            {createdBy.firstName} {createdBy.lastName}
-          </span>
+          <span className={styles.creator}>{creator}</span>
           {!!additionalParticipantsCount && (
             <span> + {additionalParticipantsCount}</span>
           )}

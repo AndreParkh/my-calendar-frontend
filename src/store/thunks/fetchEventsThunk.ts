@@ -7,11 +7,11 @@ export const fetchEventsThunk = createAsyncThunk<
   IEventResponse[],
   IEventByDataBetween,
   { rejectValue: string }
->('event/fetch', async (dates) => {
+>('event/fetch', async (dates, thunkAPI) => {
   try {
     const response = await API.event.getByDateBetween(dates)
     return response.data
   } catch {
-    return null
+    return thunkAPI.rejectWithValue('Ошибка при загрузке событий')
   }
 })
