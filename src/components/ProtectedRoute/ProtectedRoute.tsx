@@ -29,9 +29,12 @@ export const ProtectedRoute = ({
   useEffect(() => {
     if (token && redirectAuthPath) {
       navigate(redirectAuthPath, { replace: true })
-      dispatch(authorizedUserThunk())
     }
   }, [token, navigate, redirectAuthPath, dispatch])
+
+  if (token) {
+    dispatch(authorizedUserThunk())
+  }
 
   if ((!token && redirectNonAuthPath) || (token && redirectAuthPath)) {
     return null

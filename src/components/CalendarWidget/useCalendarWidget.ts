@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/store/hooks.ts'
 import { selectSelectedDate } from '@/store/selectors.ts'
-import { createDate } from '@/functions/createDate.ts'
 import { useCallback, useMemo, useState } from 'react'
 import { useWidgetMonth } from '@/hooks/useWidgetMonth.ts'
 import {
@@ -8,18 +7,21 @@ import {
   LAST_MONTH_INDEX,
   NEXT,
 } from '@/constants/constants.ts'
-import { CustomDate, ToggleDirection } from '@/types/types.ts'
+import { ToggleDirection } from '@/types/types.ts'
 import { setDate } from '@/store/reducers/calendarSlice.ts'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 export const useCalendarWidget = () => {
   const dispatch = useAppDispatch()
   const selectedDateISO = useAppSelector(selectSelectedDate)
   const [shownDate, setShownDate] = useState(new Date(selectedDateISO))
   const shownDayList = useWidgetMonth(shownDate)
+  const { createDate } = useCustomDate()
+  type CustomDate = ReturnType<typeof createDate>
 
   const convertedSelectedDate = useMemo(
     () => createDate(shownDate),
-    [shownDate],
+    [shownDate, createDate],
   )
   const { monthIndex, year } = convertedSelectedDate
 

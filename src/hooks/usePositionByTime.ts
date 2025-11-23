@@ -1,8 +1,9 @@
-import { createDate } from '@/functions/createDate.ts'
 import { useMemo } from 'react'
 import { coefficient } from '@/constants/constants.ts'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 export const usePositionByTime = (date: Date = new Date()) => {
+  const { createDate } = useCustomDate()
   const { year, monthIndex, dayNumber } = createDate(date)
 
   const tonight = useMemo(
@@ -15,7 +16,10 @@ export const usePositionByTime = (date: Date = new Date()) => {
     [date, tonight],
   )
 
-  const position = Math.round(minutesSinceMidnight * coefficient)
+  const position = useMemo(
+    () => Math.round(minutesSinceMidnight * coefficient),
+    [minutesSinceMidnight],
+  )
 
   const resultMemo = useMemo(
     () => ({

@@ -6,14 +6,15 @@ import { useAppSelector } from '@/store/hooks.ts'
 import { selectEvents, selectShownWeek } from '@/store/selectors.ts'
 import { getOnlyDate } from '@/functions/getOnlyDate.ts'
 import { useGroupEvents } from '@/hooks/useGroupEvents.ts'
-import { createDate } from '@/functions/createDate.ts'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 export const TimeGrid = () => {
   const events = useAppSelector(selectEvents)
   const storedShownWeek = useAppSelector(selectShownWeek)
+  const { createDate } = useCustomDate()
   const shownWeek = useMemo(
     () => storedShownWeek.map((date) => createDate(new Date(date)).dateUtc),
-    [storedShownWeek],
+    [storedShownWeek, createDate],
   )
   const groupedEvents = useGroupEvents(events)
 

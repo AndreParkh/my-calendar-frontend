@@ -1,11 +1,11 @@
 import { IEventResponse } from '@/interfaces/EventResponse.interface.ts'
 import { useMemo } from 'react'
 import { usePositionByTime } from '@/hooks/usePositionByTime.ts'
-import { useFormatTime } from '@/hooks/useFormatTime.ts'
 import { coefficient } from '@/constants/constants.ts'
 import { useAppSelector } from '@/store/hooks.ts'
 import { selectAuthorizedUser } from '@/store/selectors.ts'
 import { useTranslation } from 'react-i18next'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 const MAIN_PARTICIPANTS_COUNT = 2
 
@@ -13,6 +13,7 @@ export const useEvent = (event: IEventResponse) => {
   const { t } = useTranslation('event')
 
   const authorizedUser = useAppSelector(selectAuthorizedUser)
+  const { formatTime } = useCustomDate()
 
   const { title, createdBy, startTime, endTime, participants } = event
   const startDate = useMemo(() => new Date(startTime), [startTime])
@@ -25,21 +26,31 @@ export const useEvent = (event: IEventResponse) => {
   const { minutesSinceMidnight: timeStart, position } =
     usePositionByTime(startDate)
   const { minutesSinceMidnight: timeEnd } = usePositionByTime(endDate)
-  const { formatTime: formatStartTime } = useFormatTime(startDate)
-  const { formatTime: formatEndTime } = useFormatTime(endDate)
+
+  const formatedEventTime = useMemo(
+    () => ({
+      start: formatTime(startDate, 'HH:mm'),
+      end: formatTime(endDate, 'HH:mm'),
+    }),
+    [formatTime, startDate, endDate],
+  )
+
   const duration = useMemo(
-    () => `${formatStartTime('HH:mm')} - ${formatEndTime('HH:mm')}`,
-    [formatStartTime, formatEndTime],
+    () => t('time', { eventTime: formatedEventTime }),
+    [formatedEventTime, t],
   )
   const size = useMemo(
     () => (timeEnd - timeStart) * coefficient,
     [timeEnd, timeStart],
   )
 
-  const creator =
-    authorizedUser?.id === createdBy.id
-      ? t('creator.self')
-      : `${createdBy.firstName} ${createdBy.lastName}`
+  const creator = useMemo(
+    () =>
+      authorizedUser?.id === createdBy.id
+        ? t('creator.self')
+        : t('creator.user', { createdBy }),
+    [authorizedUser, createdBy, t],
+  )
 
   return {
     title,

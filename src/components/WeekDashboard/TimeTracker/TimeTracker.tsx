@@ -1,10 +1,11 @@
 import styles from './TimeTracker.module.css'
-import { useFormatTime } from '@/hooks/useFormatTime.ts'
 import { useState } from 'react'
 import { usePositionByTime } from '@/hooks/usePositionByTime.ts'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 export const TimeTracker = () => {
   const [date, setDate] = useState(new Date())
+  const { formatTime } = useCustomDate()
 
   const intervalId = setInterval(() => {
     clearInterval(intervalId)
@@ -12,8 +13,7 @@ export const TimeTracker = () => {
   }, 1000)
 
   const { position } = usePositionByTime(date)
-  const { formatTime } = useFormatTime(date)
-  const formatedTime = formatTime('HH:mm')
+  const formatedTime = formatTime(date, 'HH:mm')
 
   return (
     <div

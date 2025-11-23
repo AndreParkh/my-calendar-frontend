@@ -1,20 +1,21 @@
 import styles from './DateCell.module.css'
-import { createDate } from '@/functions/createDate.ts'
 import cn from 'classnames'
 import { memo, useMemo } from 'react'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 export interface DateCellProps {
   date: Date
 }
 
 const DateCell = ({ date }: DateCellProps) => {
+  const { createDate } = useCustomDate()
   const { year, monthIndex, weekDayName, dayNumber } = useMemo(
     () => createDate(date),
-    [date],
-  ) //convertedDate
+    [date, createDate],
+  )
   const weekDayNameUC = weekDayName.toUpperCase()
 
-  const today = useMemo(() => createDate(), [])
+  const today = useMemo(() => createDate(), [createDate])
   const isToday = useMemo(
     () =>
       year === today.year &&

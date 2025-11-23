@@ -13,23 +13,26 @@ export const Dashboard = () => {
     () => new Date(selectedDateStr),
     [selectedDateStr],
   )
-  const startDateRequest = useMemo(
-    () => new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1),
-    [selectedDate],
-  )
-  const endDateRequest = useMemo(
-    () => new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0),
-    [selectedDate],
-  )
 
   useEffect(() => {
+    const startDateRequest = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      1,
+    )
+    const endDateRequest = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth() + 1,
+      0,
+    )
+
     const dates = {
       start: startDateRequest,
       end: endDateRequest,
     }
 
     dispatch(fetchEventsThunk(dates))
-  }, [dispatch, startDateRequest, endDateRequest])
+  }, [dispatch, selectedDate])
 
   return (
     <div className={styles.dashboard}>

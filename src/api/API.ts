@@ -2,6 +2,7 @@ import axios from 'axios'
 import { IEventByDataBetween, ILogin, IRegister } from '@/store/types.ts'
 import apiClient from '@/api/apiClient.ts'
 import { ILoginResponse } from '@/interfaces/LoginResponse.interface.ts'
+import { sliceDateZoneIndex } from '@/functions/sliceDateZoneIndex.ts'
 
 const backend = import.meta.env.VITE_API_DOMAIN
 
@@ -44,8 +45,8 @@ export const API = {
           'Content-Type': 'application/json',
         },
         params: {
-          start: dates.start.toISOString().slice(0, -1),
-          end: dates.end.toISOString().slice(0, -1),
+          start: sliceDateZoneIndex(dates.start.toISOString()),
+          end: sliceDateZoneIndex(dates.end.toISOString()),
         },
       }),
   },

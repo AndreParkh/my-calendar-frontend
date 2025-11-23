@@ -1,25 +1,31 @@
 import { getQtyDaysOfMonth } from '@/functions/getQtyDaysOfMonth.ts'
 import { QTY_WEEK_DAYS } from '@/constants/constants.ts'
-import { useCustomMonth } from '@/hooks/useCustomMonth.ts'
 import { useMemo } from 'react'
-import { createDate } from '@/functions/createDate.ts'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 export const useWidgetMonth = (date: Date) => {
-  const { monthIndex, year } = useMemo(() => createDate(date), [date])
+  const { createDate, createMonth } = useCustomDate()
+  const { monthIndex, year } = useMemo(
+    () => createDate(date),
+    [date, createDate],
+  )
   const qtyDaysOfMonth = useMemo(
     () => getQtyDaysOfMonth(monthIndex, year),
     [monthIndex, year],
   )
 
-  const prevMonthDayList = useCustomMonth(
-    new Date(year, monthIndex - 1),
-  ).createMonthDayList()
-  const nextMonthDayList = useCustomMonth(
-    new Date(year, monthIndex + 1),
-  ).createMonthDayList()
-  const dayList = useCustomMonth(
-    new Date(year, monthIndex),
-  ).createMonthDayList()
+  const prevMonthDayList = useMemo(
+    () => createMonth(new Date(year, monthIndex - 1)).createMonthDayList(),
+    [createMonth, year, monthIndex],
+  )
+  const nextMonthDayList = useMemo(
+    () => createMonth(new Date(year, monthIndex + 1)).createMonthDayList(),
+    [createMonth, year, monthIndex],
+  )
+  const dayList = useMemo(
+    () => createMonth(new Date(year, monthIndex)).createMonthDayList(),
+    [createMonth, year, monthIndex],
+  )
 
   const firstDay = dayList[0]
   const lastDay = dayList[qtyDaysOfMonth - 1]

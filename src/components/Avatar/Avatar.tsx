@@ -19,7 +19,7 @@ export const Avatar = ({ size, avatarUrl }: AvatarProps) => {
         { [styles.large]: size === LARGE },
       )}
       src={avatarUrl}
-      alt={'avatar'}
+      alt="avatar"
     />
   )
 }
