@@ -83,7 +83,20 @@ export const useCustomDate = () => {
     [createDate],
   )
 
-  return { createDate, createMonth, formatTime }
+  const checkIsToday = useCallback(
+    (date: CustomDate) => {
+      const today = createDate()
+
+      return (
+        date.year === today.year &&
+        date.monthIndex === today.monthIndex &&
+        date.dayNumber === today.dayNumber
+      )
+    },
+    [createDate],
+  )
+
+  return { createDate, createMonth, formatTime, checkIsToday }
 }
 
 export type CustomDate = ReturnType<
