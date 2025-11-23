@@ -1,11 +1,12 @@
-import { createDate } from '@/functions/createDate.ts'
 import { QTY_WEEK_DAYS } from '@/constants/constants.ts'
 import { useMemo } from 'react'
+import { useCustomDate } from '@/hooks/useCustomDate.ts'
 
 export const useCalendarWeek = (date: Date): Date[] => {
+  const { createDate } = useCustomDate()
   const { weekDayNumber, dayNumber, monthIndex, year } = useMemo(
     () => createDate(date),
-    [date],
+    [date, createDate],
   )
 
   const isSunday = useMemo(() => weekDayNumber === 0, [weekDayNumber])

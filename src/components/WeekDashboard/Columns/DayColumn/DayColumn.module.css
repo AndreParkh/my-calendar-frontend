@@ -1,0 +1,22 @@
+.day-column {
+  position: relative;
+  flex: 1;
+}
+
+.event {
+  max-height: 0;
+}
+
+.cell {
+  min-height: 1.5rem;
+  border: 1px solid var(--secondary-color);
+  box-sizing: border-box;
+}
+
+.cell:nth-child(odd) {
+  border-bottom: none;
+}
+
+.cell:nth-child(even) {
+  border-top: 1px dashed var(--secondary-color);
+}

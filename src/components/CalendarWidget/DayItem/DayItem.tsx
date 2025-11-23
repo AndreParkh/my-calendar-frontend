@@ -1,7 +1,7 @@
 import styles from './DayItem.module.css'
 import cn from 'classnames'
-import { createDate, CustomDate } from '@/functions/createDate.ts'
 import { ButtonHTMLAttributes, DetailedHTMLProps, memo, useMemo } from 'react'
+import { CustomDate, useCustomDate } from '@/hooks/useCustomDate.ts'
 
 interface DayItemProps
   extends DetailedHTMLProps<
@@ -18,13 +18,10 @@ const DayItem = ({
   onClick,
   ...props
 }: DayItemProps) => {
-  const today = useMemo(() => createDate(), [])
+  const { checkIsToday } = useCustomDate()
   const isToday = useMemo(
-    () =>
-      customDate.year === today.year &&
-      customDate.monthIndex === today.monthIndex &&
-      customDate.dayNumber === today.dayNumber,
-    [today, customDate],
+    () => checkIsToday(customDate),
+    [customDate, checkIsToday],
   )
 
   return (
