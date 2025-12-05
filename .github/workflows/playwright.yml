@@ -1,0 +1,36 @@
+name: Playwright Tests
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ opened, reopened, edited, synchronize ]
+
+jobs:
+  # Job 1: Запуск тестов на playwright
+  playwright-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Подключение к VPS
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.VPS_PRIVATE_KEY }}
+
+      # Шаг 3: Подключение к VPS и запуск Docker Compose
+      - name: Deploy Docker Compose on VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} <<'EOF'
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+          
+          cd /home/${{ secrets.VPS_USERNAME }}/playwright/
+          rm -rf my-calendar-frontend
+          git clone git@github.com:AndreParkh/my-calendar-frontend.git
+          cd my-calendar-frontend
+          git checkout $BRANCH_NAME
+          npm ci
+          npx playwright test
+          EOF
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
