@@ -1,0 +1,27 @@
+name: Playwright Tests
+on:
+  pull_request:
+    branches: [ master ]
+    types: [ opened, reopened, edited, synchronize ]
+
+jobs:
+  # Job 1: Запуск тестов на playwright
+  playwright-test:
+    needs: trigger-deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Подключение к VPS
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.VPS_PRIVATE_KEY }}
+
+      # Шаг 3: Подключение к VPS и запуск Docker Compose
+      - name: Deploy Docker Compose on VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} <<EOF
+          cd /home/${{ secrets.VPS_USERNAME }}/playwright/
+          git pull origin ${{ github.ref_name }}
+          cd my-calendar-frontend
+          npx playwright test

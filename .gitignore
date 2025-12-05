@@ -15,7 +15,6 @@ dist-ssr
 .env.development
 .env.production
 
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -29,3 +28,10 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

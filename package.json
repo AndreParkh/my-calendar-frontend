@@ -21,6 +21,7 @@
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
     "compression": "^1.8.0",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "i18next": "^25.3.2",
     "i18next-http-backend": "^3.0.2",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
     "@eslint/js": "^9.29.0",
+    "@playwright/test": "^1.57.0",
     "@storybook/addon-a11y": "^9.1.8",
     "@storybook/addon-docs": "^9.1.8",
     "@storybook/addon-onboarding": "^9.1.8",
@@ -48,6 +50,7 @@
     "@types/express": "^5.0.3",
     "@types/js-cookie": "^3.0.6",
     "@types/micromatch": "^4.0.9",
+    "@types/node": "^24.10.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react-swc": "^3.10.2",

@@ -102,7 +102,7 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-calendar-frontend-pr:latest
 
-  # Job
+  # Job 4: Дерлой приложения
   trigger-deploy:
     needs: publish-docker-image
     runs-on: ubuntu-latest
