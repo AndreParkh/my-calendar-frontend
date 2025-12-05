@@ -20,6 +20,10 @@ jobs:
       - name: Deploy Docker Compose on VPS
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} <<'EOF'
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+          
           cd /home/${{ secrets.VPS_USERNAME }}/playwright/
           rm -rf my-calendar-frontend
           git clone git@github.com:AndreParkh/my-calendar-frontend.git
