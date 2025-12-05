@@ -19,8 +19,14 @@ jobs:
       # Шаг 3: Подключение к VPS и запуск Docker Compose
       - name: Deploy Docker Compose on VPS
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} <<EOF
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} <<'EOF'
           cd /home/${{ secrets.VPS_USERNAME }}/playwright/
-          git pull origin ${{ github.ref_name }}
+          rm -rf my-calendar-frontend
+          git clone git@github.com:AndreParkh/my-calendar-frontend.git
           cd my-calendar-frontend
+          git checkout $BRANCH_NAME
+          npm ci
           npx playwright test
+          EOF
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
