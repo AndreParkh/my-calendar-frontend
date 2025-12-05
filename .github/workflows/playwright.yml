@@ -7,7 +7,6 @@ on:
 jobs:
   # Job 1: Запуск тестов на playwright
   playwright-test:
-    needs: trigger-deploy
     runs-on: ubuntu-latest
 
     steps:
